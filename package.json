@@ -16,12 +16,14 @@
     "workflow:build": "npm run build:dev && npm run build:prod",
     "test:unit": "karma start",
     "test:lint": "tslint -p tsconfig.json --format stylish 'src/**/*.ts*'",
+    "workflow:test": "npm run test:unit && npm run test:lint",
     "build:docs": "typedoc 'src/'"
   },
   "keywords": [],
   "author": "",
   "dependencies": {},
   "devDependencies": {
+    "@drecom/scene-graph-schema": "^0.0.3",
     "@types/chai": "^4.1.2",
     "@types/mocha": "^5.2.0",
     "@types/pixi.js": "^4.7.3",

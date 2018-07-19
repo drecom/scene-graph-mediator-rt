@@ -1,4 +1,3 @@
 import assert from 'power-assert';
-import './converter/IntermediateDto';
-import './converter/TextTree';
-import './runtime_mediator/Pixi';
+import './importer/Pixi';
+import './exporter/Pixi';
