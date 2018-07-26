@@ -18,7 +18,11 @@ describe('Importer', () => {
       transform: {
         x: 10,
         y: 10,
-        children: [ childTestName ]
+        children: [ childTestName ],
+        anchor: {
+          x: 0,
+          y: 0
+        }
       }
     };
     const childNode = {
@@ -29,7 +33,11 @@ describe('Importer', () => {
         x: 20,
         y: 20,
         parent:   parentTestName,
-        children: []
+        children: [],
+        anchor: {
+          x: 0,
+          y: 0
+        }
       }
     };
     const spriteNode = {
@@ -41,17 +49,31 @@ describe('Importer', () => {
         y: 30,
         parent:   parentTestName,
         children: [],
+        anchor: {
+          x: 0,
+          y: 0
+        }
       },
       sprite: {
         url: 'http://127.0.0.1/dummyImage.png'
       }
     };
+    const metadata = {
+      width:  640,
+      height: 1136,
+      positiveCoord: {
+        xRight: true,
+        yDown:  true
+      }
+    };
 
     const graph = {
-      scene: [ parentNode, childNode ]
+      scene: [ parentNode, childNode ],
+      metadata: metadata
     };
     const graphWithResource = {
-      scene: [ parentNode, spriteNode ]
+      scene: [ parentNode, spriteNode ],
+      metadata: metadata
     };
 
     describe('when schema does not contain resource info', () => {

@@ -1,4 +1,4 @@
-# pixi-scene-graph
+# scene-graph-mediator-rt
 
 This module converts both _intermediate dto schema_ and runtime object each other.
 Each of converters should know runtime object schema so this module provides _pixi.js_ mediator by default.

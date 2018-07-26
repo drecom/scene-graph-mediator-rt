@@ -5,7 +5,7 @@ import Exporter from 'exporter/Exporter';
  * It handles runtime object like Unity's GameObject or Cocos's Node
  */
 export default class Pixi extends Exporter {
-    createSchema(scene: any): SchemaJson;
+    createSchema(scene: any, width: number, height: number): SchemaJson;
     createNode(base: any): Node;
     private createNodeRecursive;
 }

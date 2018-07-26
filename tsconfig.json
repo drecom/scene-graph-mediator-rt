@@ -32,7 +32,7 @@
     "lib"
   ],
   "typedocOptions": {
-    "name": "pixi-scene-graph",
+    "name": "scene-graph-mediator-rt",
     "mode": "file",
     "out": "./docs",
     "gitRevision": "develop",

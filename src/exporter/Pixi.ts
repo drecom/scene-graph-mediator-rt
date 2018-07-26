@@ -7,9 +7,17 @@ import Exporter from 'exporter/Exporter';
  */
 export default class Pixi extends Exporter {
 
-  public createSchema(scene: any): SchemaJson {
+  public createSchema(scene: any, width: number, height: number): SchemaJson {
     const root: SchemaJson = {
-      scene: this.createNodeRecursive(scene)
+      scene: this.createNodeRecursive(scene),
+      metadata: {
+        width,
+        height,
+        positiveCoord: {
+          xRight: true,
+          yDown:  true
+        }
+      }
     };
 
     return root;
@@ -24,7 +32,11 @@ export default class Pixi extends Exporter {
       constructorName: className,
       transform: {
         x: base.position.x,
-        y: base.position.y
+        y: base.position.y,
+        anchor: {
+          x: 0,
+          y: 0
+        }
       }
     };
 

@@ -8,5 +8,6 @@ export default class Pixi extends Importer {
     hasInitiator(name: string): boolean;
     import(schema: SchemaJson, callback?: (root: any) => void): any;
     private restoreScene;
-    private restoreNodeWithResource;
+    private createContainers;
+    private restoreTransform;
 }

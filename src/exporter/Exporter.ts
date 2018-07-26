@@ -10,14 +10,14 @@ export default abstract class Exporter {
    * like text tree or raw intermediates.<br />
    * FIXME: Child node(s) added in constructor may duplicate.
    */
-  public export(rootNode: any): SchemaJson {
-    return this.createSchema(rootNode);
+  public export(rootNode: any, width: number, height: number): SchemaJson {
+    return this.createSchema(rootNode, width, height);
   }
 
   /**
    * Create Schema from base node.
    */
-  abstract createSchema(base: any): SchemaJson;
+  abstract createSchema(base: any, width: number, height: number): SchemaJson;
   /**
    * Create Schema from base node.
    */

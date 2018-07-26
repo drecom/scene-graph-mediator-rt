@@ -20,8 +20,8 @@ module.exports = (env, argv) => {
     output: {
       path: path.join(__dirname, 'lib'),
       filename: (mode === 'production')
-        ? 'pixi-scene-graph.min.js'
-        : 'pixi-scene-graph.js',
+        ? 'scene-graph-mediator-rt.min.js'
+        : 'scene-graph-mediator-rt.js',
       library: 'pixi-scene-graph',
       libraryTarget: 'umd'
     },

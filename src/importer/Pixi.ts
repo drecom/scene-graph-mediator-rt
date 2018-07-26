@@ -42,59 +42,109 @@ export default class Pixi extends Importer {
   }
 
   private restoreScene(root: PIXI.Container, schema: SchemaJson): void {
-    const tempContainerMap = new Map<string, PIXI.Container>();
-    const tempNodeMap      = new Map<string, Node>();
-
     const resources = PIXI.loader.resources;
 
-    // instantiate all
+    // create Map
+    const nodeMap = new Map<string, Node>();
     for (let i = 0; i < schema.scene.length; i++) {
       const node = schema.scene[i];
-
-      const object: any = this.restoreNodeWithResource(node, resources);
-
-      tempContainerMap.set(node.id, object);
-      tempNodeMap.set(node.id, node);
+      nodeMap.set(node.id, node);
     }
 
-    // rebuild hielarchy
-    tempContainerMap.forEach((v, k) => {
-      const node = tempNodeMap.get(k);
-      if (node && node.transform.parent) {
-        const container = tempContainerMap.get(node.transform.parent);
-        if (container) {
-          container.addChild(v);
-        }
-      } else {
-        root.addChild(v);
-      }
-    });
+    const containerMap = this.createContainers(nodeMap, resources);
+
+    this.restoreTransform(root, schema, nodeMap, containerMap);
   }
 
-  private restoreNodeWithResource(node: Node, resources: any): any {
-    let object: any;
+  private createContainers(
+    nodeMap: Map<string, Node>,
+    resources: any
+  ): Map<string, PIXI.Container> {
+    const containerMap = new Map<string, PIXI.Container>();
 
-    if (node.spine) {
-      // object = new PIXI.spine.Spine(resources[node.id].data);
-    } else if (node.sprite) {
-      // TODO: base64 image
-      object = new PIXI.Sprite(resources[node.id].texture);
-    } else if (node.text) {
-      const style = new PIXI.TextStyle({});
-      if (node.text.style) {
-        style.fontSize  = node.text.style.size || 26;
-        style.fill      = node.text.style.color || 'black';
+    nodeMap.forEach((node, id) => {
+      let object: any;
+
+      if (node.spine) {
+        // object = new PIXI.spine.Spine(resources[node.id].data);
+      } else if (node.sprite) {
+        // TODO: base64 image
+        object = new PIXI.Sprite(resources[node.id].texture);
+      } else if (node.text) {
+        const style = new PIXI.TextStyle({});
+        if (node.text.style) {
+          style.fontSize  = node.text.style.size || 26;
+          style.fill      = node.text.style.color || 'black';
+        }
+        object = new PIXI.Text(node.text.text || '', style);
+      } else if (this.hasInitiator(node.constructorName)) {
+        object = this.getInitiator(node.constructorName)(node);
+      } else {
+        object = new PIXI.Container();
       }
-      object = new PIXI.Text(node.text.text || '', style);
-    } else if (this.hasInitiator(node.constructorName)) {
-      object = this.getInitiator(node.constructorName)(node);
-    } else {
-      object = new PIXI.Container();
-    }
 
-    object.name = node.name;
-    object.position.set(node.transform.x || 0, node.transform.y || 0);
+      if (!object) {
+        return;
+      }
 
-    return object;
+      object.name = node.name;
+
+      containerMap.set(id, object);
+    });
+
+    return containerMap;
+  }
+
+  private restoreTransform(
+    root: PIXI.Container,
+    schema: SchemaJson,
+    nodeMap: Map<string, Node>,
+    containerMap: Map<string, PIXI.Container>
+  ): void {
+    const metadata = schema.metadata;
+
+    const coordMul = {
+      x: (metadata.positiveCoord.xRight ? 1 : -1),
+      y: (metadata.positiveCoord.yDown  ? 1 : -1)
+    };
+
+    containerMap.forEach((container, id) => {
+      const node = nodeMap.get(id);
+      if (!node) {
+        return;
+      }
+
+      const parentSize = {
+        width:  metadata.width,
+        height: metadata.height
+      };
+
+      const transform = node.transform;
+
+      if (transform.parent === undefined) {
+        root.addChild(container);
+      } else {
+        const parentContainer = containerMap.get(transform.parent);
+        const parentNode      = nodeMap.get(transform.parent);
+        if (!parentContainer || !parentNode) {
+          return;
+        }
+
+        parentSize.width  = parentNode.transform.width  || 0;
+        parentSize.height = parentNode.transform.height || 0;
+
+        parentContainer.addChild(container);
+      }
+
+      const containerSize = {
+        width:  (transform.width  === undefined) ? container.width  : transform.width,
+        height: (transform.height === undefined) ? container.height : transform.height
+      };
+
+      container.position.set(
+        transform.x * coordMul.x + (parentSize.width  - containerSize.width)  * transform.anchor.x,
+        transform.y * coordMul.y + (parentSize.height - containerSize.height) * transform.anchor.y
+      );
+    });
   }
 }
