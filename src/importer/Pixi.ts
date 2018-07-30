@@ -1,6 +1,8 @@
 import { SchemaJson, Node } from '@drecom/scene-graph-schema';
 import Importer from 'importer/Importer';
 
+const TO_RADIAN = Math.PI / 180;
+
 /**
  * Pixi implementation of RuntimeMediator
  */
@@ -25,6 +27,9 @@ export default class Pixi extends Importer {
         assets.push({ url: node.spine.url, name: node.id });
       } else if (node.sprite) {
         assets.push({ url: node.sprite.url, name: node.id });
+        if (node.sprite.atlasUrl) {
+          assets.push({ url: node.sprite.atlasUrl, name: `${node.id}_atlas` });
+        }
       }
     }
 
@@ -69,12 +74,22 @@ export default class Pixi extends Importer {
         // object = new PIXI.spine.Spine(resources[node.id].data);
       } else if (node.sprite) {
         // TODO: base64 image
-        object = new PIXI.Sprite(resources[node.id].texture);
+        const texture = resources[node.id].texture;
+        if (node.sprite.atlasUrl) {
+          // TODO: choose texture atlas parser and create texture for frame
+        }
+        object = new PIXI.Sprite(texture);
       } else if (node.text) {
         const style = new PIXI.TextStyle({});
         if (node.text.style) {
           style.fontSize  = node.text.style.size || 26;
           style.fill      = node.text.style.color || 'black';
+          switch (node.text.style.horizontalAlign) {
+            case 2 : style.align = 'right'; break;
+            case 1 : style.align = 'center'; break;
+            case 0 :
+            default: style.align = 'left'; break;
+          }
         }
         object = new PIXI.Text(node.text.text || '', style);
       } else if (this.hasInitiator(node.constructorName)) {
@@ -141,10 +156,27 @@ export default class Pixi extends Importer {
         height: (transform.height === undefined) ? container.height : transform.height
       };
 
-      container.position.set(
-        transform.x * coordMul.x + (parentSize.width  - containerSize.width)  * transform.anchor.x,
-        transform.y * coordMul.y + (parentSize.height - containerSize.height) * transform.anchor.y
-      );
+      const scale = (transform.scale) ? {
+        x: transform.scale.x,
+        y: transform.scale.y
+      } : { x: 1, y: 1 };
+      const rotation = (transform.rotation) ? transform.rotation * TO_RADIAN : 0;
+
+      container.scale.set(scale.x, scale.y);
+      container.rotation = rotation;
+
+      let x = transform.x * coordMul.x;
+      let y = transform.y * coordMul.y;
+      x += (parentSize.width  - containerSize.width  * scale.x) * transform.anchor.x;
+      y += (parentSize.height - containerSize.height * scale.y) * transform.anchor.y;
+
+      if ((container as PIXI.Sprite).anchor) {
+        (container as PIXI.Sprite).anchor.set(transform.anchor.x, transform.anchor.y);
+        x += containerSize.width  * scale.x * transform.anchor.x;
+        y += containerSize.height * scale.y * transform.anchor.y;
+      }
+
+      container.position.set(x, y);
     });
   }
 }
