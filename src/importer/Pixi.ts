@@ -8,6 +8,9 @@ const TO_RADIAN = Math.PI / 180;
  */
 export default class Pixi extends Importer {
 
+  public onLoaderAdd: (node: Node, asset: { url: string, name: string }) => void
+    = (_node: Node, _asset: { url: string, name: string }) => {};
+
   public getInitiator(name: string): (node: Node) => any {
     return (_node) => { return new (PIXI as any)[name](); };
   }
@@ -22,15 +25,28 @@ export default class Pixi extends Importer {
     // resources
     const assets = [];
     for (let i = 0; i < schema.scene.length; i++) {
+      let url, name;
+
       const node = schema.scene[i];
       if (node.spine) {
-        assets.push({ url: node.spine.url, name: node.id });
+        url  = node.spine.url;
+        name = node.id;
       } else if (node.sprite) {
-        assets.push({ url: node.sprite.url, name: node.id });
         if (node.sprite.atlasUrl) {
-          assets.push({ url: node.sprite.atlasUrl, name: `${node.id}_atlas` });
+          url  = node.sprite.atlasUrl;
+          name = `${node.id}_atlas`;
+        } else {
+          url  = node.sprite.url;
+          name = node.id;
         }
+      } else {
+        continue;
       }
+
+      const asset = { url, name };
+
+      this.onLoaderAdd(node, asset);
+      assets.push(asset);
     }
 
     if (assets.length > 0) {
@@ -74,10 +90,9 @@ export default class Pixi extends Importer {
         // object = new PIXI.spine.Spine(resources[node.id].data);
       } else if (node.sprite) {
         // TODO: base64 image
-        const texture = resources[node.id].texture;
-        if (node.sprite.atlasUrl) {
-          // TODO: choose texture atlas parser and create texture for frame
-        }
+        let texture = (node.sprite.atlasUrl)
+          ? PIXI.Texture.fromFrame(node.sprite.frameName)
+          : resources[node.id].texture;
         object = new PIXI.Sprite(texture);
       } else if (node.text) {
         const style = new PIXI.TextStyle({});
