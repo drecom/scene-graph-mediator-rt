@@ -1,9 +1,7 @@
-// tslint:disable-next-line import-name
-import Importer from 'importer/Pixi';
-// tslint:disable-next-line import-name
-import Exporter from 'exporter/Pixi';
+import Importers from 'importer';
+import Exporters from 'exporter';
 
 export {
-  Importer,
-  Exporter
+  Importers,
+  Exporters
 };

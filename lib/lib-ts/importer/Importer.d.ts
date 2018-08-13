@@ -12,6 +12,9 @@ export default abstract class Importer {
      * Remarks: This is an experimental design and may be changed in the future.
      */
     getInitiator(_name: string): (node: Node) => any;
+    /**
+     * Returns initiator exists
+     */
     hasInitiator(_name: string): boolean;
     /**
      * Import Schema and rebuild runtime node structure.

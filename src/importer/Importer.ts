@@ -15,6 +15,9 @@ export default abstract class Importer {
   public getInitiator(_name: string): (node: Node) => any {
     return () => {};
   }
+  /**
+   * Returns initiator exists
+   */
   public hasInitiator(_name: string): boolean {
     return false;
   }

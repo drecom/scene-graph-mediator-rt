@@ -11,11 +11,11 @@ export default abstract class Exporter {
      */
     export(rootNode: any, width: number, height: number): SchemaJson;
     /**
-     * Create Schema from base node.
+     * Create Schema from base object.
      */
     abstract createSchema(base: any, width: number, height: number): SchemaJson;
     /**
-     * Create Schema from base node.
+     * Create Node from base object.
      */
     abstract createNode(base: any): Node;
 }

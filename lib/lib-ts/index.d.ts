@@ -1,3 +1,3 @@
-import Importer from 'importer/Pixi';
-import Exporter from 'exporter/Pixi';
-export { Importer, Exporter };
+import Importers from 'importer';
+import Exporters from 'exporter';
+export { Importers, Exporters };
