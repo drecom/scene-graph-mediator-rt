@@ -1,16 +1,27 @@
 import assert from 'power-assert';
 import { spy } from 'sinon';
 import 'pixi.js';
-import Importer from 'importer/Pixi';
+import Pixi from 'importer/Pixi';
 
-describe('Importer', () => {
+const parentTestName = 'parentTestName';
+const childTestName  = 'childTestName';
+const testSpriteUrl  = 'http://127.0.0.1/dummyImage.png';
+
+function clearCache() {
+  PIXI.loader.resources = {};
+  PIXI.Texture.removeFromCache(parentTestName);
+  PIXI.Texture.removeFromCache(childTestName);
+  PIXI.Texture.removeFromCache(testSpriteUrl);
+  PIXI.BaseTexture.removeFromCache(parentTestName);
+  PIXI.BaseTexture.removeFromCache(childTestName);
+  PIXI.BaseTexture.removeFromCache(testSpriteUrl);
+}
+
+describe('Pixi', () => {
   describe('import', () => {
-    const pixi = new Importer();
+    const pixi = new Pixi();
 
     // fixtures
-    const parentTestName = 'parentTestName';
-    const childTestName  = 'childTestName';
-
     const parentNode = {
       constructorName: 'Container',
       id:   parentTestName,
@@ -42,12 +53,11 @@ describe('Importer', () => {
     };
     const spriteNode = {
       constructorName: 'Sprite',
-      id:   childTestName,
-      name: childTestName,
+      id:   parentTestName,
+      name: parentTestName,
       transform: {
         x: 30,
         y: 30,
-        parent:   parentTestName,
         children: [],
         anchor: {
           x: 0,
@@ -55,7 +65,46 @@ describe('Importer', () => {
         }
       },
       sprite: {
-        url: 'http://127.0.0.1/dummyImage.png'
+        url: testSpriteUrl
+      }
+    };
+    const sliceNode = {
+      constructorName: 'Sprite',
+      id:   parentTestName,
+      name: parentTestName,
+      transform: {
+        x: 0,
+        y: 0,
+        children: [],
+        anchor: {
+          x: 0,
+          y: 0
+        }
+      },
+      sprite: {
+        url: testSpriteUrl,
+        slice: {
+          top:    10,
+          bottom: 20,
+          left:   30,
+          right:  40
+        }
+      }
+    };
+    const textNode = {
+      constructorName: 'Text',
+      id:   parentTestName,
+      name: parentTestName,
+      transform: {
+        x: 0,
+        y: 0,
+        anchor: {
+          x: 0,
+          y: 0
+        }
+      },
+      text: {
+        text: 'text text'
       }
     };
     const metadata = {
@@ -71,16 +120,25 @@ describe('Importer', () => {
       scene: [ parentNode, childNode ],
       metadata: metadata
     };
-    const graphWithResource = {
-      scene: [ parentNode, spriteNode ],
-      metadata: metadata
-    };
+
+    it ('should create anonymouse root Container', () => {
+      const root = pixi.import({
+        scene: [],
+        metadata: metadata
+      });
+
+      assert.strictEqual(root.children.length, 0);
+      assert.strictEqual(root.constructor.name, 'Container');
+    });
 
     describe('when schema does not contain resource info', () => {
       it ('should restore scene immediately', () => {
         const callbackSpy = spy();
 
-        const root = pixi.import(graph, callbackSpy);
+        const root = pixi.import({
+          scene: [ parentNode, childNode ],
+          metadata: metadata
+        }, callbackSpy);
 
         assert.ok(callbackSpy.calledOnce);
 
@@ -105,13 +163,58 @@ describe('Importer', () => {
       });
     });
     describe('when schema contains resource info', () => {
-      it ('should not restore scene immediately', () => {
+      it ('should not restore scene immediately', (done) => {
         const callbackSpy = spy();
 
-        const root = pixi.import(graphWithResource, callbackSpy);
+        const root = pixi.import({
+          scene: [ spriteNode ],
+          metadata: metadata
+        }, () => {
+          callbackSpy();
+          clearCache();
+          done();
+        });
 
         assert.strictEqual(callbackSpy.getCalls().length, 0);
         assert.strictEqual(root.children.length, 0);
+      });
+
+      describe('if schema contains sprite', () => {
+        it ('should instantiate Sprite', (done) => {
+          pixi.import({
+            scene: [ spriteNode ],
+            metadata: metadata
+          }, (root) => {
+            assert.strictEqual(root.children[0].constructor.name, 'Sprite');
+            clearCache();
+            done();
+          });
+        });
+        describe('if sprite node contains slice', () => {
+          it ('should instantiate mesh.NineSlicePlane', (done) => {
+            pixi.import({
+              scene: [ sliceNode ],
+              metadata: metadata
+            }, (root) => {
+              assert.strictEqual(root.children[0].constructor.name, 'NineSlicePlane');
+              clearCache();
+              done();
+            });
+          });
+        });
+      });
+      describe('if schema contains text', () => {
+        it ('should instantiate Text', (done) => {
+          pixi.import({
+            scene: [ textNode ],
+            metadata: metadata
+          }, (root) => {
+            assert.strictEqual(root.children[0].constructor.name, 'Text');
+            assert.strictEqual(root.children[0].text, textNode.text.text);
+            clearCache();
+            done();
+          });
+        });
       });
     });
   });
