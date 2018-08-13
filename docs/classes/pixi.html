@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Pixi | pixi-scene-graph</title>
+	<title>Pixi | scene-graph-mediator-rt</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">pixi-scene-graph</a>
+					<a href="../index.html" class="title">scene-graph-mediator-rt</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -67,7 +67,9 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Pixi implementation of RuntimeMediator</p>
+						<p>Abstract class for runtime mediation.<br />
+							It handles runtime object like Unity&#39;s GameObject or Cocos&#39;s Node
+						Pixi implementation of Importer</p>
 					</div>
 				</div>
 			</section>
@@ -75,7 +77,10 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="runtimemediator.html" class="tsd-signature-type">RuntimeMediator</a>
+						<a href="exporter.html" class="tsd-signature-type">Exporter</a>
+					</li>
+					<li>
+						<a href="importer.html" class="tsd-signature-type">Importer</a>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">Pixi</span>
@@ -91,17 +96,22 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="pixi.html#createassetmap" class="tsd-kind-icon">create<wbr>Asset<wbr>Map</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="pixi.html#createcontainer" class="tsd-kind-icon">create<wbr>Container</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="pixi.html#createcontainermap" class="tsd-kind-icon">create<wbr>Container<wbr>Map</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="pixi.html#createnode" class="tsd-kind-icon">create<wbr>Node</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="pixi.html#createnodemap" class="tsd-kind-icon">create<wbr>Node<wbr>Map</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="pixi.html#createnoderecursive" class="tsd-kind-icon">create<wbr>Node<wbr>Recursive</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="pixi.html#createschema" class="tsd-kind-icon">create<wbr>Schema</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="pixi.html#createschemarecursive" class="tsd-kind-icon">create<wbr>Schema<wbr>Recursive</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="pixi.html#export" class="tsd-kind-icon">export</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="pixi.html#getinitiators" class="tsd-kind-icon">get<wbr>Initiators</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="pixi.html#getatlasresourcenamebynodeid" class="tsd-kind-icon">get<wbr>Atlas<wbr>Resource<wbr>Name<wbr>ByNode<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="pixi.html#getinitiator" class="tsd-kind-icon">get<wbr>Initiator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="pixi.html#hasinitiator" class="tsd-kind-icon">has<wbr>Initiator</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="pixi.html#import" class="tsd-kind-icon">import</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Object literals</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-static"><a href="pixi.html#initiators" class="tsd-kind-icon">Initiators</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="pixi.html#onaddloaderasset" class="tsd-kind-icon">on<wbr>Add<wbr>Loader<wbr>Asset</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="pixi.html#onrestorenode" class="tsd-kind-icon">on<wbr>Restore<wbr>Node</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="pixi.html#restorescene" class="tsd-kind-icon">restore<wbr>Scene</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="pixi.html#restoretransform" class="tsd-kind-icon">restore<wbr>Transform</a></li>
 							</ul>
 						</section>
 					</div>
@@ -109,18 +119,110 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-					<a name="createschema" class="tsd-anchor"></a>
-					<h3>create<wbr>Schema</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Schema<span class="tsd-signature-symbol">(</span>base<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/intermediatedtoschema.html" class="tsd-signature-type">IntermediateDtoSchema</a></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="createassetmap" class="tsd-anchor"></a>
+					<h3>create<wbr>Asset<wbr>Map</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Asset<wbr>Map<span class="tsd-signature-symbol">(</span>schema<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SchemaJson</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="runtimemediator.html">RuntimeMediator</a>.<a href="runtimemediator.html#createschema">createSchema</a></p>
 								<ul>
-									<li>Defined in runtime_mediator/Pixi.ts:26</li>
+									<li>Defined in importer/Pixi.ts:77</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create asset map from schema.<br />
+									Users can use this method and restoreScene individually to inject custom pipeline.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>schema: <span class="tsd-signature-type">SchemaJson</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="createcontainer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>Container</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Container<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Node</span>, resources<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in importer/Pixi.ts:174</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create container instance from given node<br />
+									Textures in loader.resources may be refered.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <span class="tsd-signature-type">Node</span></h5>
+								</li>
+								<li>
+									<h5>resources: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="createcontainermap" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>Container<wbr>Map</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Container<wbr>Map<span class="tsd-signature-symbol">(</span>nodeMap<span class="tsd-signature-symbol">: </span><a href="../globals.html#nodemap" class="tsd-signature-type">NodeMap</a>, resources<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#containermap" class="tsd-signature-type">ContainerMap</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in importer/Pixi.ts:142</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create and map all Containers from given nodeMap</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>nodeMap: <a href="../globals.html#nodemap" class="tsd-signature-type">NodeMap</a></h5>
+								</li>
+								<li>
+									<h5>resources: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#containermap" class="tsd-signature-type">ContainerMap</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="createnode" class="tsd-anchor"></a>
+					<h3>create<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Node<span class="tsd-signature-symbol">(</span>base<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Node</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="exporter.html">Exporter</a>.<a href="exporter.html#createnode">createNode</a></p>
+								<ul>
+									<li>Defined in exporter/Pixi.ts:26</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -129,31 +231,88 @@
 									<h5>base: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/intermediatedtoschema.html" class="tsd-signature-type">IntermediateDtoSchema</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Node</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-					<a name="createschemarecursive" class="tsd-anchor"></a>
-					<h3>create<wbr>Schema<wbr>Recursive</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Schema<wbr>Recursive<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/intermediatedtoschema.html" class="tsd-signature-type">IntermediateDtoSchema</a></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="createnodemap" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>Node<wbr>Map</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Node<wbr>Map<span class="tsd-signature-symbol">(</span>schema<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SchemaJson</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#nodemap" class="tsd-signature-type">NodeMap</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="runtimemediator.html">RuntimeMediator</a>.<a href="runtimemediator.html#createschemarecursive">createSchemaRecursive</a></p>
 								<ul>
-									<li>Defined in runtime_mediator/Pixi.ts:45</li>
+									<li>Defined in importer/Pixi.ts:130</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Map all nodes from given schema</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>schema: <span class="tsd-signature-type">SchemaJson</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#nodemap" class="tsd-signature-type">NodeMap</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="createnoderecursive" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>Node<wbr>Recursive</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Node<wbr>Recursive<span class="tsd-signature-symbol">(</span>base<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Node</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in exporter/Pixi.ts:96</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>node: <span class="tsd-signature-type">any</span></h5>
+									<h5>base: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/intermediatedtoschema.html" class="tsd-signature-type">IntermediateDtoSchema</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Node</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="createschema" class="tsd-anchor"></a>
+					<h3>create<wbr>Schema</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Schema<span class="tsd-signature-symbol">(</span>scene<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SchemaJson</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="exporter.html">Exporter</a>.<a href="exporter.html#createschema">createSchema</a></p>
+								<ul>
+									<li>Defined in exporter/Pixi.ts:10</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>scene: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>width: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>height: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">SchemaJson</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -161,14 +320,14 @@
 					<a name="export" class="tsd-anchor"></a>
 					<h3>export</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">export<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, rootNode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, convertLevel<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">export<span class="tsd-signature-symbol">(</span>rootNode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SchemaJson</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="runtimemediator.html">RuntimeMediator</a>.<a href="runtimemediator.html#export">export</a></p>
+								<p>Inherited from <a href="exporter.html">Exporter</a>.<a href="exporter.html#export">export</a></p>
 								<ul>
-									<li>Defined in runtime_mediator/RuntimeMediator.ts:39</li>
+									<li>Defined in exporter/Exporter.ts:13</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -181,44 +340,120 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>type: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
 									<h5>rootNode: <span class="tsd-signature-type">any</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> convertLevel: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;Level.SUMMARY</span></h5>
+									<h5>width: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>height: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">SchemaJson</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-					<a name="getinitiators" class="tsd-anchor"></a>
-					<h3>get<wbr>Initiators</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Initiators<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getatlasresourcenamebynodeid" class="tsd-anchor"></a>
+					<h3>get<wbr>Atlas<wbr>Resource<wbr>Name<wbr>ByNode<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Atlas<wbr>Resource<wbr>Name<wbr>ByNode<wbr>Id<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="runtimemediator.html">RuntimeMediator</a>.<a href="runtimemediator.html#getinitiators">getInitiators</a></p>
 								<ul>
-									<li>Defined in runtime_mediator/Pixi.ts:22</li>
+									<li>Defined in importer/Pixi.ts:30</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns singleton Pixi.Initiators to allow user modification.</p>
+									<p>Returns atlas resource name with node id</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
-								<li class="tsd-parameter-index-signature">
-									<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">Function</span></h5>
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="getinitiator" class="tsd-anchor"></a>
+					<h3>get<wbr>Initiator</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Initiator<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="importer.html">Importer</a>.<a href="importer.html#getinitiator">getInitiator</a></p>
+								<ul>
+									<li>Defined in importer/Pixi.ts:35</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns pixi class as initializer</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-siganture">
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Node</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<h4 class="tsd-parameters-title">Parameters</h4>
+											<ul class="tsd-parameters">
+												<li>
+													<h5>node: <span class="tsd-signature-type">Node</span></h5>
+												</li>
+											</ul>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="hasinitiator" class="tsd-anchor"></a>
+					<h3>has<wbr>Initiator</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Initiator<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="importer.html">Importer</a>.<a href="importer.html#hasinitiator">hasInitiator</a></p>
+								<ul>
+									<li>Defined in importer/Pixi.ts:42</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns if pixi has property with given name</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -226,88 +461,194 @@
 					<a name="import" class="tsd-anchor"></a>
 					<h3>import</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">import<span class="tsd-signature-symbol">(</span>dto<span class="tsd-signature-symbol">: </span><a href="../interfaces/intermediatedtoschema.html" class="tsd-signature-type">IntermediateDtoSchema</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">import<span class="tsd-signature-symbol">(</span>schema<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SchemaJson</span>, callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="runtimemediator.html">RuntimeMediator</a>.<a href="runtimemediator.html#import">import</a></p>
+								<p>Overrides <a href="importer.html">Importer</a>.<a href="importer.html#import">import</a></p>
 								<ul>
-									<li>Defined in runtime_mediator/Pixi.ts:71</li>
+									<li>Defined in importer/Pixi.ts:51</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>TODO: When importing the objects that exported from the scene graph
-										built from manipulated script, it may have problems below.<br />
-									<br /></p>
-									<ol>
-										<li>There is no way to know the proper constructor params.<br />
-											this causes error when cpnstructor validates the arguments.<br />
-										This problem is currently solved by defining initiators.<br /></li>
-										<li>Exporter can not identify the node(s) added in constructor.<br />
-										It causes duplicate instantiation.</li>
-									</ol>
+									<p>Import Schema and rebuild runtime node structure.<br />
+										Resources are automatically downloaded.<br />
+									Use createAssetMap if any customized workflow are preffered.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>dto: <a href="../interfaces/intermediatedtoschema.html" class="tsd-signature-type">IntermediateDtoSchema</a></h5>
+									<h5>schema: <span class="tsd-signature-type">SchemaJson</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> callback: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;(_) &#x3D;&gt; {}</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>root<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>root: <span class="tsd-signature-type">any</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 						</li>
 					</ul>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Object literals</h2>
-				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class tsd-is-static">
-					<a name="initiators" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Initiators</h3>
-					<div class="tsd-signature tsd-kind-icon">Initiators<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in runtime_mediator/Pixi.ts:12</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Initiators should not be an instance property.</p>
-						</div>
-					</div>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
-						<a name="initiators.text" class="tsd-anchor"></a>
-						<h3>Text</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
-							<li class="tsd-signature tsd-kind-icon">Text<span class="tsd-signature-symbol">(</span>Klass<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, properties<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in runtime_mediator/Pixi.ts:14</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>Klass: <span class="tsd-signature-type">any</span></h5>
-									</li>
-									<li>
-										<h5>properties: <span class="tsd-signature-type">object</span></h5>
-										<ul class="tsd-parameters">
-											<li class="tsd-parameter-index-signature">
-												<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></h5>
-											</li>
-										</ul>
-									</li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="onaddloaderasset" class="tsd-anchor"></a>
+					<h3>on<wbr>Add<wbr>Loader<wbr>Asset</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Add<wbr>Loader<wbr>Asset<span class="tsd-signature-symbol">(</span>_node<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Node</span>, _asset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in importer/Pixi.ts:18</li>
 								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-							</li>
-						</ul>
-					</section>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Callback called when any asset added to pixi loader</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>_node: <span class="tsd-signature-type">Node</span></h5>
+								</li>
+								<li>
+									<h5>_asset: <span class="tsd-signature-type">object</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="onrestorenode" class="tsd-anchor"></a>
+					<h3>on<wbr>Restore<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Restore<wbr>Node<span class="tsd-signature-symbol">(</span>_n<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Node</span>, _r<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in importer/Pixi.ts:25</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Callback called when restoring a node to pixi container<br />
+									If null is returned, default initiator creates pixi object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>_n: <span class="tsd-signature-type">Node</span></h5>
+								</li>
+								<li>
+									<h5>_r: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">null</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="restorescene" class="tsd-anchor"></a>
+					<h3>restore<wbr>Scene</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">restore<wbr>Scene<span class="tsd-signature-symbol">(</span>root<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Container</span>, schema<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SchemaJson</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in importer/Pixi.ts:118</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Rstore pixi container to given root container from schema</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>root: <span class="tsd-signature-type">Container</span></h5>
+								</li>
+								<li>
+									<h5>schema: <span class="tsd-signature-type">SchemaJson</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="restoretransform" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> restore<wbr>Transform</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">restore<wbr>Transform<span class="tsd-signature-symbol">(</span>root<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Container</span>, schema<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SchemaJson</span>, nodeMap<span class="tsd-signature-symbol">: </span><a href="../globals.html#nodemap" class="tsd-signature-type">NodeMap</a>, containerMap<span class="tsd-signature-symbol">: </span><a href="../globals.html#containermap" class="tsd-signature-type">ContainerMap</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in importer/Pixi.ts:224</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Restore transform<br />
+										Process this method after applying textures
+									since bounds can not be calculated properly if no texture are applied.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>root: <span class="tsd-signature-type">Container</span></h5>
+								</li>
+								<li>
+									<h5>schema: <span class="tsd-signature-type">SchemaJson</span></h5>
+								</li>
+								<li>
+									<h5>nodeMap: <a href="../globals.html#nodemap" class="tsd-signature-type">NodeMap</a></h5>
+								</li>
+								<li>
+									<h5>containerMap: <a href="../globals.html#containermap" class="tsd-signature-type">ContainerMap</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -322,58 +663,82 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="intermediatedto.html" class="tsd-kind-icon">Intermediate<wbr>Dto</a>
+						<a href="exporter.html" class="tsd-kind-icon">Exporter</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="importer.html" class="tsd-kind-icon">Importer</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
 						<a href="pixi.html" class="tsd-kind-icon">Pixi</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="pixi.html#createschema" class="tsd-kind-icon">create<wbr>Schema</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="pixi.html#createassetmap" class="tsd-kind-icon">create<wbr>Asset<wbr>Map</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="pixi.html#createcontainer" class="tsd-kind-icon">create<wbr>Container</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="pixi.html#createcontainermap" class="tsd-kind-icon">create<wbr>Container<wbr>Map</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="pixi.html#createschemarecursive" class="tsd-kind-icon">create<wbr>Schema<wbr>Recursive</a>
+								<a href="pixi.html#createnode" class="tsd-kind-icon">create<wbr>Node</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="pixi.html#createnodemap" class="tsd-kind-icon">create<wbr>Node<wbr>Map</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="pixi.html#createnoderecursive" class="tsd-kind-icon">create<wbr>Node<wbr>Recursive</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="pixi.html#createschema" class="tsd-kind-icon">create<wbr>Schema</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="pixi.html#export" class="tsd-kind-icon">export</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="pixi.html#getatlasresourcenamebynodeid" class="tsd-kind-icon">get<wbr>Atlas<wbr>Resource<wbr>Name<wbr>ByNode<wbr>Id</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="pixi.html#getinitiators" class="tsd-kind-icon">get<wbr>Initiators</a>
+								<a href="pixi.html#getinitiator" class="tsd-kind-icon">get<wbr>Initiator</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="pixi.html#hasinitiator" class="tsd-kind-icon">has<wbr>Initiator</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="pixi.html#import" class="tsd-kind-icon">import</a>
 							</li>
-							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-static">
-								<a href="pixi.html#initiators" class="tsd-kind-icon">Initiators</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="pixi.html#onaddloaderasset" class="tsd-kind-icon">on<wbr>Add<wbr>Loader<wbr>Asset</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="pixi.html#onrestorenode" class="tsd-kind-icon">on<wbr>Restore<wbr>Node</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="pixi.html#restorescene" class="tsd-kind-icon">restore<wbr>Scene</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="pixi.html#restoretransform" class="tsd-kind-icon">restore<wbr>Transform</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="runtimemediator.html" class="tsd-kind-icon">Runtime<wbr>Mediator</a>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="../globals.html#containermap" class="tsd-kind-icon">Container<wbr>Map</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="texttree.html" class="tsd-kind-icon">Text<wbr>Tree</a>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="../globals.html#nodemap" class="tsd-kind-icon">Node<wbr>Map</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="../interfaces/converter.html" class="tsd-kind-icon">Converter</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/intermediatedtoschema.html" class="tsd-kind-icon">Intermediate<wbr>Dto<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#level" class="tsd-kind-icon">Level</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#type" class="tsd-kind-icon">Type</a>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#degree_to_radian" class="tsd-kind-icon">DEGREE_<wbr>TO_<wbr>RADIAN</a>
 					</li>
 					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="../globals.html#scenegraph" class="tsd-kind-icon">Scene<wbr>Graph</a>
+						<a href="../globals.html#exporters" class="tsd-kind-icon">Exporters</a>
 					</li>
 					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="../globals.html#scenegraphoptions" class="tsd-kind-icon">Scene<wbr>Graph<wbr>Options</a>
+						<a href="../globals.html#importers" class="tsd-kind-icon">Importers</a>
 					</li>
 				</ul>
 			</nav>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>pixi-scene-graph</title>
+	<title>scene-graph-mediator-rt</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">pixi-scene-graph</a>
+					<a href="index.html" class="title">scene-graph-mediator-rt</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> pixi-scene-graph</h1>
+			<h1> scene-graph-mediator-rt</h1>
 		</div>
 	</div>
 </header>
@@ -68,171 +68,130 @@
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class"><a href="classes/intermediatedto.html" class="tsd-kind-icon">Intermediate<wbr>Dto</a></li>
+								<li class="tsd-kind-class"><a href="classes/exporter.html" class="tsd-kind-icon">Exporter</a></li>
+								<li class="tsd-kind-class"><a href="classes/importer.html" class="tsd-kind-icon">Importer</a></li>
 								<li class="tsd-kind-class"><a href="classes/pixi.html" class="tsd-kind-icon">Pixi</a></li>
-								<li class="tsd-kind-class"><a href="classes/runtimemediator.html" class="tsd-kind-icon">Runtime<wbr>Mediator</a></li>
-								<li class="tsd-kind-class"><a href="classes/texttree.html" class="tsd-kind-icon">Text<wbr>Tree</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
-							<h3>Interfaces</h3>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/converter.html" class="tsd-kind-icon">Converter</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/intermediatedtoschema.html" class="tsd-kind-icon">Intermediate<wbr>Dto<wbr>Schema</a></li>
+								<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#containermap" class="tsd-kind-icon">Container<wbr>Map</a></li>
+								<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#nodemap" class="tsd-kind-icon">Node<wbr>Map</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable"><a href="globals.html#level" class="tsd-kind-icon">Level</a></li>
-								<li class="tsd-kind-variable"><a href="globals.html#type" class="tsd-kind-icon">Type</a></li>
+								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#degree_to_radian" class="tsd-kind-icon">DEGREE_<wbr>TO_<wbr>RADIAN</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Object literals</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-object-literal tsd-is-not-exported"><a href="globals.html#scenegraph" class="tsd-kind-icon">Scene<wbr>Graph</a></li>
-								<li class="tsd-kind-object-literal tsd-is-not-exported"><a href="globals.html#scenegraphoptions" class="tsd-kind-icon">Scene<wbr>Graph<wbr>Options</a></li>
+								<li class="tsd-kind-object-literal tsd-is-not-exported"><a href="globals.html#exporters" class="tsd-kind-icon">Exporters</a></li>
+								<li class="tsd-kind-object-literal tsd-is-not-exported"><a href="globals.html#importers" class="tsd-kind-icon">Importers</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable">
-					<a name="level" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> Level</h3>
-					<div class="tsd-signature tsd-kind-icon">Level<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;Object.freeze({SUMMARY: 1,DETAIL: 2})</span></div>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
+					<a name="containermap" class="tsd-anchor"></a>
+					<h3>Container<wbr>Map</h3>
+					<div class="tsd-signature tsd-kind-icon">Container<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Container</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Level.ts:5</li>
+							<li>Defined in importer/Pixi.ts:7</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Scene graph expression level.<br />
-							All converter must support these levels.</p>
-						</div>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>DETAIL<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>SUMMARY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							</li>
-						</ul>
-					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-variable">
-					<a name="type" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> Type</h3>
-					<div class="tsd-signature tsd-kind-icon">Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;Object.freeze({INTERMEDIATE_DTO: &#x27;INTERMEDIATE_DTO&#x27;,TEXT_TREE:        &#x27;TEXT_TREE&#x27;})</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
+					<a name="nodemap" class="tsd-anchor"></a>
+					<h3>Node<wbr>Map</h3>
+					<div class="tsd-signature tsd-kind-icon">Node<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Node</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Type.ts:5</li>
+							<li>Defined in importer/Pixi.ts:6</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Scene graph expression variants.<br />
-							TODO: accept user extension.</p>
-						</div>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>INTERMEDIATE_<wbr>DTO<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>TEXT_<wbr>TREE<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
+					<a name="degree_to_radian" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> DEGREE_<wbr>TO_<wbr>RADIAN</h3>
+					<div class="tsd-signature tsd-kind-icon">DEGREE_<wbr>TO_<wbr>RADIAN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;Math.PI / 180</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in importer/Pixi.ts:4</li>
 						</ul>
-					</div>
+					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Object literals</h2>
 				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-is-not-exported">
-					<a name="scenegraph" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> Scene<wbr>Graph</h3>
-					<div class="tsd-signature tsd-kind-icon">Scene<wbr>Graph<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<a name="exporters" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Exporters</h3>
+					<div class="tsd-signature tsd-kind-icon">Exporters<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in index.ts:11</li>
+							<li>Defined in exporter/index.ts:4</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>SceneGraph provides runtime node mediator.<br />
-							It is not frozen and should be extended.</p>
-						</div>
-					</div>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-						<a name="scenegraph.pixi" class="tsd-anchor"></a>
+						<a name="exporters.abstract" class="tsd-anchor"></a>
+						<h3>Abstract</h3>
+						<div class="tsd-signature tsd-kind-icon">Abstract<span class="tsd-signature-symbol">:</span> <a href="classes/exporter.html" class="tsd-signature-type">Exporter</a><span class="tsd-signature-symbol"> =&nbsp;Exporter</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in exporter/index.ts:6</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
+						<a name="exporters.pixi" class="tsd-anchor"></a>
 						<h3>Pixi</h3>
 						<div class="tsd-signature tsd-kind-icon">Pixi<span class="tsd-signature-symbol">:</span> <a href="classes/pixi.html" class="tsd-signature-type">Pixi</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in index.ts:14</li>
+								<li>Defined in exporter/index.ts:5</li>
 							</ul>
 						</aside>
 					</section>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-is-not-exported">
-					<a name="scenegraphoptions" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> Scene<wbr>Graph<wbr>Options</h3>
-					<div class="tsd-signature tsd-kind-icon">Scene<wbr>Graph<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<a name="importers" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Importers</h3>
+					<div class="tsd-signature tsd-kind-icon">Importers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in index.ts:17</li>
+							<li>Defined in importer/index.ts:4</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-						<a name="scenegraphoptions.level" class="tsd-anchor"></a>
-						<h3>Level</h3>
-						<div class="tsd-signature tsd-kind-icon">Level<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+						<a name="importers.abstract" class="tsd-anchor"></a>
+						<h3>Abstract</h3>
+						<div class="tsd-signature tsd-kind-icon">Abstract<span class="tsd-signature-symbol">:</span> <a href="classes/importer.html" class="tsd-signature-type">Importer</a><span class="tsd-signature-symbol"> =&nbsp;Importer</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in index.ts:21</li>
+								<li>Defined in importer/index.ts:6</li>
 							</ul>
 						</aside>
-						<div class="tsd-type-declaration">
-							<h4>Type declaration</h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter">
-									<h5>DETAIL<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li class="tsd-parameter">
-									<h5>SUMMARY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-						</div>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-						<a name="scenegraphoptions.type" class="tsd-anchor"></a>
-						<h3>Type</h3>
-						<div class="tsd-signature tsd-kind-icon">Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+						<a name="importers.pixi" class="tsd-anchor"></a>
+						<h3>Pixi</h3>
+						<div class="tsd-signature tsd-kind-icon">Pixi<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Pixi</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in index.ts:22</li>
+								<li>Defined in importer/index.ts:5</li>
 							</ul>
 						</aside>
-						<div class="tsd-type-declaration">
-							<h4>Type declaration</h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter">
-									<h5>INTERMEDIATE_<wbr>DTO<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li class="tsd-parameter">
-									<h5>TEXT_<wbr>TREE<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-						</div>
 					</section>
 				</section>
 			</section>
@@ -248,34 +207,28 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="classes/intermediatedto.html" class="tsd-kind-icon">Intermediate<wbr>Dto</a>
+						<a href="classes/exporter.html" class="tsd-kind-icon">Exporter</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/importer.html" class="tsd-kind-icon">Importer</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/pixi.html" class="tsd-kind-icon">Pixi</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/runtimemediator.html" class="tsd-kind-icon">Runtime<wbr>Mediator</a>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#containermap" class="tsd-kind-icon">Container<wbr>Map</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/texttree.html" class="tsd-kind-icon">Text<wbr>Tree</a>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#nodemap" class="tsd-kind-icon">Node<wbr>Map</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/converter.html" class="tsd-kind-icon">Converter</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/intermediatedtoschema.html" class="tsd-kind-icon">Intermediate<wbr>Dto<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#level" class="tsd-kind-icon">Level</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#type" class="tsd-kind-icon">Type</a>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#degree_to_radian" class="tsd-kind-icon">DEGREE_<wbr>TO_<wbr>RADIAN</a>
 					</li>
 					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#scenegraph" class="tsd-kind-icon">Scene<wbr>Graph</a>
+						<a href="globals.html#exporters" class="tsd-kind-icon">Exporters</a>
 					</li>
 					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#scenegraphoptions" class="tsd-kind-icon">Scene<wbr>Graph<wbr>Options</a>
+						<a href="globals.html#importers" class="tsd-kind-icon">Importers</a>
 					</li>
 				</ul>
 			</nav>

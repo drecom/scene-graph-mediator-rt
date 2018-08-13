@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>pixi-scene-graph</title>
+	<title>scene-graph-mediator-rt</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">pixi-scene-graph</a>
+					<a href="index.html" class="title">scene-graph-mediator-rt</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> pixi-scene-graph</h1>
+			<h1> scene-graph-mediator-rt</h1>
 		</div>
 	</div>
 </header>
@@ -62,13 +62,12 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="pixi-scene-graph">pixi-scene-graph</h1>
-				<p>This module converts both <em>intermediate dto schema</em> and runtime object each other.
-				Each of converters should know runtime object schema so this module provides <em>pixi.js</em> mediator by default.</p>
-				<p>Scene graph applies <em>scene graph intermediate dto schema</em> for data transportation.</p>
+				<h1 id="scene-graph-mediator-rt">scene-graph-mediator-rt</h1>
+				<p>This module converts both scene graph schema and runtime object each other.
+				Each of converters should know runtime object schema, this module provides <a href="https://github.com/pixijs/pixi.js">pixi.js</a> importer/exporter by default.</p>
+				<p>The schema definition of scene graph is based on <a href="https://github.com/drecom/scene-graph-schema">@drecom/scene-graph-schema</a> .</p>
 				<h1 id="remarks">Remarks</h1>
-				<p>Currently this module contains a <em>scene graph intermediate dto schema</em>, converters and runtime mediators to make it standalone.
-				Those three components will be separated to be enabled to develop individually in the future.</p>
+				<p>To shrink runtime code volume, importer/exporter for each runtime may separated from this repository in the future.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -82,34 +81,28 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="classes/intermediatedto.html" class="tsd-kind-icon">Intermediate<wbr>Dto</a>
+						<a href="classes/exporter.html" class="tsd-kind-icon">Exporter</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/importer.html" class="tsd-kind-icon">Importer</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/pixi.html" class="tsd-kind-icon">Pixi</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/runtimemediator.html" class="tsd-kind-icon">Runtime<wbr>Mediator</a>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#containermap" class="tsd-kind-icon">Container<wbr>Map</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/texttree.html" class="tsd-kind-icon">Text<wbr>Tree</a>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#nodemap" class="tsd-kind-icon">Node<wbr>Map</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/converter.html" class="tsd-kind-icon">Converter</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/intermediatedtoschema.html" class="tsd-kind-icon">Intermediate<wbr>Dto<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#level" class="tsd-kind-icon">Level</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#type" class="tsd-kind-icon">Type</a>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#degree_to_radian" class="tsd-kind-icon">DEGREE_<wbr>TO_<wbr>RADIAN</a>
 					</li>
 					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#scenegraph" class="tsd-kind-icon">Scene<wbr>Graph</a>
+						<a href="globals.html#exporters" class="tsd-kind-icon">Exporters</a>
 					</li>
 					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#scenegraphoptions" class="tsd-kind-icon">Scene<wbr>Graph<wbr>Options</a>
+						<a href="globals.html#importers" class="tsd-kind-icon">Importers</a>
 					</li>
 				</ul>
 			</nav>
