@@ -52,12 +52,14 @@ export default class Pixi extends Exporter {
     }
 
     switch (className) {
+      case 'NineSlicePlane': break; // TODO:
       case 'Spine': break; // TODO:
       case 'Sprite': {
         // TODO: base64 image
         node.sprite =  {
           url : base.texture.baseTexture.imageUrl
         };
+        // TODO: texture atlas
         break;
       }
       case 'Text': {

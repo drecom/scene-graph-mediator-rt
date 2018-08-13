@@ -15,14 +15,14 @@ export default class Pixi extends Importer {
    * Callback called when any asset added to pixi loader
    */
   public onAddLoaderAsset: (node: Node, asset: { url: string, name: string }) => void
-    = (_node: Node, _asset: { url: string, name: string }) => {};
+    = (_node: Node, _asset: { url: string, name: string }) => {}
 
   /**
    * Callback called when restoring a node to pixi container<br />
    * If null is returned, default initiator creates pixi object.
    */
   public onRestoreNode: (node: Node, resources: any) => any | null | undefined
-    = (_n, _r) => { return null; };
+    = (_n, _r) => { return null; }
 
   /**
    * Returns atlas resource name with node id
@@ -56,7 +56,7 @@ export default class Pixi extends Importer {
 
     // load if any asset is required
     if (assets.size > 0) {
-      assets.forEach((asset) => PIXI.loader.add(asset));
+      assets.forEach((asset) => { PIXI.loader.add(asset); });
 
       PIXI.loader.load(() => {
         this.restoreScene(root, schema);
@@ -80,7 +80,8 @@ export default class Pixi extends Importer {
 
     // collect required resource
     for (let i = 0; i < schema.scene.length; i++) {
-      let url, name;
+      let url;
+      let name;
 
       const node = schema.scene[i];
       if (node.spine) {

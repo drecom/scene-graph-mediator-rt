@@ -1,7 +1,7 @@
 import Exporter from 'exporter/Exporter';
 import Pixi from 'exporter/Pixi';
 declare const Exporters: {
-    Abstract: typeof Exporter;
     Pixi: typeof Pixi;
+    Abstract: typeof Exporter;
 };
-export default Exporters;
+export { Exporters };

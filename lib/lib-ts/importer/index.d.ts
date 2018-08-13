@@ -1,7 +1,7 @@
 import Importer from 'importer/Importer';
 import Pixi from 'importer/Pixi';
 declare const Importers: {
-    Abstract: typeof Importer;
     Pixi: typeof Pixi;
+    Abstract: typeof Importer;
 };
-export default Importers;
+export { Importers };

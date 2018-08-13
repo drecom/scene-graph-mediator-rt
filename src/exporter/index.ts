@@ -2,8 +2,8 @@ import Exporter from 'exporter/Exporter';
 import Pixi from 'exporter/Pixi';
 
 const Exporters = {
-  Abstract: Exporter,
-  Pixi: Pixi
+  Pixi,
+  Abstract: Exporter
 };
 
-export default Exporters;
+export { Exporters };
