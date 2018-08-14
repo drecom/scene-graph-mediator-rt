@@ -86,27 +86,23 @@ export default class Pixi extends Importer {
     // collect required resource
     for (let i = 0; i < schema.scene.length; i++) {
       let url;
-      let name;
 
       const node = schema.scene[i];
       if (node.spine) {
         // TODO: support spine
         // url  = node.spine.url;
-        // name = node.id;
         continue;
       } else if (node.sprite) {
-        if (node.sprite.atlasUrl) {
-          url  = node.sprite.atlasUrl;
-          name = this.getAtlasResourceNameByNodeId(node.id);
-        } else {
-          url  = node.sprite.url;
-          name = node.id;
-        }
+        url = node.sprite.url;
       } else {
         continue;
       }
 
-      const asset = { url, name };
+      if (!url) {
+        continue;
+      }
+
+      const asset = { url, name: url };
 
       // user custom process to modify url or resource name
       this.onAddLoaderAsset(node, asset);
@@ -189,17 +185,21 @@ export default class Pixi extends Importer {
       if (node.sprite.atlasUrl) {
         object = new PIXI.Sprite(PIXI.Texture.fromFrame(node.sprite.frameName));
       } else if (node.sprite.slice) {
-        object = new PIXI.mesh.NineSlicePlane(
-          resources[node.id].texture,
-          node.sprite.slice.left,
-          node.sprite.slice.top,
-          node.sprite.slice.right,
-          node.sprite.slice.bottom
-        );
-        object.width  = node.transform.width;
-        object.height = node.transform.height;
+        if (node.sprite.url) {
+          object = new PIXI.mesh.NineSlicePlane(
+            resources[node.sprite.url].texture,
+            node.sprite.slice.left,
+            node.sprite.slice.top,
+            node.sprite.slice.right,
+            node.sprite.slice.bottom
+          );
+          object.width  = node.transform.width;
+          object.height = node.transform.height;
+        }
       } else {
-        object = new PIXI.Sprite(resources[node.id].texture);
+        if (node.sprite.url) {
+          object = new PIXI.Sprite(resources[node.sprite.url].texture);
+        }
       }
     } else if (node.text) {
       const style = new PIXI.TextStyle({});
