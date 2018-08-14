@@ -18,6 +18,10 @@ export default class Pixi extends Importer {
      */
     onRestoreNode: (node: Node, resources: any) => any | null | undefined;
     /**
+     * Callback called when each pixi object is instantiated
+     */
+    onPixiObjectCreated: (id: string, obj: any) => void;
+    /**
      * Returns atlas resource name with node id
      */
     getAtlasResourceNameByNodeId(id: string): string;

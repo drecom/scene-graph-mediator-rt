@@ -109,6 +109,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="pixi.html#hasinitiator" class="tsd-kind-icon">has<wbr>Initiator</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="pixi.html#import" class="tsd-kind-icon">import</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="pixi.html#onaddloaderasset" class="tsd-kind-icon">on<wbr>Add<wbr>Loader<wbr>Asset</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="pixi.html#onpixiobjectcreated" class="tsd-kind-icon">on<wbr>Pixi<wbr>Object<wbr>Created</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="pixi.html#onrestorenode" class="tsd-kind-icon">on<wbr>Restore<wbr>Node</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="pixi.html#restorescene" class="tsd-kind-icon">restore<wbr>Scene</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="pixi.html#restoretransform" class="tsd-kind-icon">restore<wbr>Transform</a></li>
@@ -129,7 +130,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in importer/Pixi.ts:77</li>
+									<li>Defined in importer/Pixi.ts:82</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -158,7 +159,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in importer/Pixi.ts:174</li>
+									<li>Defined in importer/Pixi.ts:181</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -190,7 +191,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in importer/Pixi.ts:142</li>
+									<li>Defined in importer/Pixi.ts:147</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -245,7 +246,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in importer/Pixi.ts:130</li>
+									<li>Defined in importer/Pixi.ts:135</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -363,7 +364,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in importer/Pixi.ts:30</li>
+									<li>Defined in importer/Pixi.ts:35</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -392,7 +393,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="importer.html">Importer</a>.<a href="importer.html#getinitiator">getInitiator</a></p>
 								<ul>
-									<li>Defined in importer/Pixi.ts:35</li>
+									<li>Defined in importer/Pixi.ts:40</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -439,7 +440,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="importer.html">Importer</a>.<a href="importer.html#hasinitiator">hasInitiator</a></p>
 								<ul>
-									<li>Defined in importer/Pixi.ts:42</li>
+									<li>Defined in importer/Pixi.ts:47</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -468,7 +469,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="importer.html">Importer</a>.<a href="importer.html#import">import</a></p>
 								<ul>
-									<li>Defined in importer/Pixi.ts:51</li>
+									<li>Defined in importer/Pixi.ts:56</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -549,6 +550,37 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="onpixiobjectcreated" class="tsd-anchor"></a>
+					<h3>on<wbr>Pixi<wbr>Object<wbr>Created</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Pixi<wbr>Object<wbr>Created<span class="tsd-signature-symbol">(</span>_i<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, _o<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in importer/Pixi.ts:30</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Callback called when each pixi object is instantiated</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>_i: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>_o: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="onrestorenode" class="tsd-anchor"></a>
 					<h3>on<wbr>Restore<wbr>Node</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -590,7 +622,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in importer/Pixi.ts:118</li>
+									<li>Defined in importer/Pixi.ts:123</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -621,7 +653,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in importer/Pixi.ts:224</li>
+									<li>Defined in importer/Pixi.ts:231</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -711,6 +743,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="pixi.html#onaddloaderasset" class="tsd-kind-icon">on<wbr>Add<wbr>Loader<wbr>Asset</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="pixi.html#onpixiobjectcreated" class="tsd-kind-icon">on<wbr>Pixi<wbr>Object<wbr>Created</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="pixi.html#onrestorenode" class="tsd-kind-icon">on<wbr>Restore<wbr>Node</a>

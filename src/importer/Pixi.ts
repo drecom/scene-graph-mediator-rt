@@ -25,6 +25,11 @@ export default class Pixi extends Importer {
     = (_n, _r) => { return null; }
 
   /**
+   * Callback called when each pixi object is instantiated
+   */
+  public onPixiObjectCreated: (id: string, obj: any) => void = (_i, _o) => {};
+
+  /**
    * Returns atlas resource name with node id
    */
   public getAtlasResourceNameByNodeId(id: string): string { return `${id}_atlas`; }
@@ -160,6 +165,8 @@ export default class Pixi extends Importer {
       if (!object.name) {
         object.name = node.name;
       }
+
+      this.onPixiObjectCreated(id, object);
 
       containerMap.set(id, object);
     });
