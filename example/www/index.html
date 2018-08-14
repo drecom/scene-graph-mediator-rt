@@ -13,7 +13,7 @@
       document.body.appendChild(app.view);
 
       PIXI.loader.add({ name: 'scenegraph', url: '/graph.json' }).load(() => {
-        const importer = new window["pixi-scene-graph"].Importers.Pixi();
+        const importer = new window["scene-graph-mediator-rt"].Importers.Pixi();
 
         // Scene graph used in this sample is exported from Cocos Creator.
         // Sprite sheet may be described in plist.

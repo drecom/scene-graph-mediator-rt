@@ -22,7 +22,7 @@ module.exports = (env, argv) => {
       filename: (mode === 'production')
         ? 'scene-graph-mediator-rt.min.js'
         : 'scene-graph-mediator-rt.js',
-      library: 'pixi-scene-graph',
+      library: 'scene-graph-mediator-rt',
       libraryTarget: 'umd'
     },
 
