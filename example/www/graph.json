@@ -1,0 +1,368 @@
+{
+  "scene": [
+    {
+      "id": "2",
+      "name": "Canvas",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 640,
+        "height": 1136,
+        "x": 0,
+        "y": 0,
+        "rotation": 0,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "children": [
+          "3",
+          "12",
+          "15",
+          "18"
+        ]
+      }
+    },
+    {
+      "id": "3",
+      "name": "SpriteSheetNode",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 0,
+        "height": 0,
+        "x": -17,
+        "y": -32,
+        "rotation": 0,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "parent": "2",
+        "children": [
+          "4",
+          "6",
+          "8",
+          "10"
+        ]
+      }
+    },
+    {
+      "id": "4",
+      "name": "SpriteSheet_arupaka",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 136,
+        "height": 186,
+        "x": 0,
+        "y": -99,
+        "rotation": 0,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "parent": "3",
+        "children": []
+      },
+      "sprite": {
+        "frameName": "animal_arupaka.png",
+        "url": "/assets/Texture/sample_sprite_sheet.png",
+        "atlasUrl": "/assets/Texture/sample_sprite_sheet.plist"
+      }
+    },
+    {
+      "id": "6",
+      "name": "SpriteSheet_buta",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 148,
+        "height": 176,
+        "x": 107,
+        "y": -146,
+        "rotation": 45,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "parent": "3",
+        "children": []
+      },
+      "sprite": {
+        "frameName": "animal_buta.png",
+        "url": "/assets/Texture/sample_sprite_sheet.png",
+        "atlasUrl": "/assets/Texture/sample_sprite_sheet.plist"
+      }
+    },
+    {
+      "id": "8",
+      "name": "SpriteSheet_hamster",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 172,
+        "height": 178,
+        "x": 162,
+        "y": -18,
+        "rotation": 180,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "parent": "3",
+        "children": []
+      },
+      "sprite": {
+        "frameName": "animal_hamster.png",
+        "url": "/assets/Texture/sample_sprite_sheet.png",
+        "atlasUrl": "/assets/Texture/sample_sprite_sheet.plist"
+      }
+    },
+    {
+      "id": "10",
+      "name": "SpriteSheet_hiyoko",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 182,
+        "height": 184,
+        "x": 59,
+        "y": 123,
+        "rotation": -45,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "parent": "3",
+        "children": []
+      },
+      "sprite": {
+        "frameName": "animal_hiyoko.png",
+        "url": "/assets/Texture/sample_sprite_sheet.png",
+        "atlasUrl": "/assets/Texture/sample_sprite_sheet.plist"
+      }
+    },
+    {
+      "id": "12",
+      "name": "SpriteNode",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 0,
+        "height": 0,
+        "x": -17,
+        "y": -32,
+        "rotation": 0,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "parent": "2",
+        "children": [
+          "13"
+        ]
+      }
+    },
+    {
+      "id": "13",
+      "name": "Sprite",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 128,
+        "height": 188,
+        "x": -13,
+        "y": 235,
+        "rotation": 0,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "parent": "12",
+        "children": []
+      },
+      "sprite": {
+        "url": "/assets/Texture/animal_usagi.png",
+        "frameName": "animal_usagi"
+      }
+    },
+    {
+      "id": "15",
+      "name": "9SliceNode",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 0,
+        "height": 0,
+        "x": -17,
+        "y": -32,
+        "rotation": 0,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "parent": "2",
+        "children": [
+          "16"
+        ]
+      }
+    },
+    {
+      "id": "16",
+      "name": "9Slice",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 157,
+        "height": 139,
+        "x": -110,
+        "y": 6,
+        "rotation": 0,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "parent": "15",
+        "children": []
+      },
+      "sprite": {
+        "url": "/assets/Texture/bg_message.png",
+        "frameName": "bg_message",
+        "slice": {
+          "top": 14,
+          "bottom": 14,
+          "left": 14,
+          "right": 14
+        }
+      }
+    },
+    {
+      "id": "18",
+      "name": "LabelNode",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 0,
+        "height": 0,
+        "x": -17,
+        "y": -32,
+        "rotation": 0,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "parent": "2",
+        "children": [
+          "19",
+          "21"
+        ]
+      }
+    },
+    {
+      "id": "19",
+      "name": "Label1",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 104.06,
+        "height": 80,
+        "x": -96,
+        "y": 31,
+        "rotation": 0,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "parent": "18",
+        "children": []
+      },
+      "text": {
+        "text": "hey hey !!\nhey !",
+        "style": {
+          "size": 24,
+          "horizontalAlign": 2,
+          "color": "#ffffff"
+        }
+      }
+    },
+    {
+      "id": "21",
+      "name": "Label2",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 97.39,
+        "height": 80,
+        "x": -127,
+        "y": -12,
+        "rotation": 0,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "parent": "18",
+        "children": []
+      },
+      "text": {
+        "text": "hey !\nheyhey !!",
+        "style": {
+          "size": 24,
+          "horizontalAlign": 0,
+          "color": "#ffffff"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "width": 640,
+    "height": 1136,
+    "positiveCoord": {
+      "xRight": true,
+      "yDown": false
+    },
+    "anchor": {
+      "x": 0.5,
+      "y": 0.5
+    }
+  }
+}

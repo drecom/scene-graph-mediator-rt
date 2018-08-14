@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, user-scalable=no" />
+  <script type='text/javascript' src='/pixi.min.js'></script>
+  <script type='text/javascript' src='/scene-graph-mediator-rt.js'></script>
+<head/>
+<body>
+  <script type='text/javascript'>
+    window.onload = function() {
+      var app = new PIXI.Application(640, 1136, {backgroundColor : 0x1099bb});
+      document.body.appendChild(app.view);
+
+      PIXI.loader.add({ name: 'scenegraph', url: '/graph.json' }).load(() => {
+        const importer = new window["pixi-scene-graph"].Importers.Pixi();
+
+        // Scene graph used in this sample is exported from Cocos Creator.
+        // Sprite sheet may be described in plist.
+        // In this example, it should be converted to json.
+        // Of cources you can modify this path ahead of runtime.
+        importer.onAddLoaderAsset = function (node, assset) {
+          if (node.sprite && node.sprite.atlasUrl) {
+            const names = assset.url.split('.');
+            names.pop();
+            names.push('json');
+            assset.url = names.join('.');;
+          }
+        };
+
+        importer.import(PIXI.loader.resources.scenegraph.data, function (root) { app.stage.addChild(root); });
+      });
+    };
+  </script>
+</body>
+</html>
