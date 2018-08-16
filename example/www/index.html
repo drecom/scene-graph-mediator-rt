@@ -9,7 +9,7 @@
 <body>
   <script type='text/javascript'>
     window.onload = function() {
-      var app = new PIXI.Application(640, 1136, {backgroundColor : 0x1099bb});
+      window.app = new PIXI.Application(640, 1136, {backgroundColor : 0x1099bb});
       document.body.appendChild(app.view);
 
       PIXI.loader.add({ name: 'scenegraph', url: '/graph.json' }).load(() => {
