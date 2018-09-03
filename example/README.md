@@ -15,7 +15,7 @@ SRC=www/assets/Texture/sample_sprite_sheet.plist node ../scripts/plist2json.js
 Then launch local server
 
 ```
-node ./scerver.js
+node ./server.js
 ```
 
 Imported scene graph can be scene in following url
