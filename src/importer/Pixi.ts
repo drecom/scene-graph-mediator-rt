@@ -182,24 +182,30 @@ export default class Pixi extends Importer {
       // object = new PIXI.spine.Spine(resources[node.id].data);
     } else if (node.sprite) {
       // TODO: base64 image
+
+      let texture = null;
       if (node.sprite.atlasUrl) {
-        object = new PIXI.Sprite(PIXI.Texture.fromFrame(node.sprite.frameName));
-      } else if (node.sprite.slice) {
-        if (node.sprite.url) {
-          object = new PIXI.mesh.NineSlicePlane(
-            resources[node.sprite.url].texture,
-            node.sprite.slice.left,
-            node.sprite.slice.top,
-            node.sprite.slice.right,
-            node.sprite.slice.bottom
-          );
-          object.width  = node.transform.width;
-          object.height = node.transform.height;
-        }
+        texture = PIXI.Texture.fromFrame(node.sprite.frameName);
+      } else if (node.sprite.url) {
+        texture = resources[node.sprite.url].texture;
+      }
+
+      if (!texture) {
+        return null;
+      }
+
+      if (node.sprite.slice) {
+        object = new PIXI.mesh.NineSlicePlane(
+          texture,
+          node.sprite.slice.left,
+          node.sprite.slice.top,
+          node.sprite.slice.right,
+          node.sprite.slice.bottom
+        );
+        object.width  = node.transform.width;
+        object.height = node.transform.height;
       } else {
-        if (node.sprite.url) {
-          object = new PIXI.Sprite(resources[node.sprite.url].texture);
-        }
+        object = new PIXI.Sprite(texture);
       }
     } else if (node.text) {
       const style = new PIXI.TextStyle({});

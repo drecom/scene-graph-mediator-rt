@@ -23,7 +23,8 @@
           "5",
           "14",
           "17",
-          "20"
+          "20",
+          "25"
         ]
       }
     },
@@ -372,6 +373,63 @@
           "size": 24,
           "horizontalAlign": 0,
           "color": "#ffffff"
+        }
+      }
+    },
+    {
+      "id": "25",
+      "name": "SpriteSheet9SliceNode",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 0,
+        "height": 0,
+        "x": 0,
+        "y": 0,
+        "rotation": 0,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "parent": "2",
+        "children": [
+          "26"
+        ]
+      }
+    },
+    {
+      "id": "26",
+      "name": "SpriteSheet9Slice",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 194,
+        "height": 212,
+        "x": -215,
+        "y": 204,
+        "rotation": 0,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "parent": "25",
+        "children": []
+      },
+      "sprite": {
+        "frameName": "bg_message.png",
+        "url": "/assets/Texture/sample_sprite_sheet_with_9slice.png",
+        "atlasUrl": "/assets/Texture/sample_sprite_sheet_with_9slice.plist",
+        "slice": {
+          "top": 14,
+          "bottom": 14,
+          "left": 14,
+          "right": 14
         }
       }
     }
