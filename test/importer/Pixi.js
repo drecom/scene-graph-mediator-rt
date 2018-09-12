@@ -107,6 +107,48 @@ describe('Pixi', () => {
         text: 'text text'
       }
     };
+    const defaultColorNode = {
+      constructorName: 'Container',
+      id:   'default color',
+      name: 'default color',
+      transform: {
+        x: 0,
+        y: 0,
+        anchor: {
+          x: 0,
+          y: 0
+        }
+      },
+      renderer: {
+        color: {
+          r: 255,
+          g: 255,
+          b: 255,
+          a: 255
+        }
+      }
+    };
+    const colorNode = {
+      constructorName: 'Container',
+      id:   'color',
+      name: 'color',
+      transform: {
+        x: 0,
+        y: 0,
+        anchor: {
+          x: 0,
+          y: 0
+        }
+      },
+      renderer: {
+        color: {
+          r: 128,
+          g: 64,
+          b: 192,
+          a: 128
+        }
+      }
+    };
     const metadata = {
       width:  640,
       height: 1136,
@@ -215,6 +257,33 @@ describe('Pixi', () => {
             done();
           });
         });
+      });
+    });
+
+    describe('when renderer.color is given', () => {
+      it ('should not add filter if the color is default color', () => {
+        const root = pixi.import({
+          scene: [ defaultColorNode ],
+          metadata: metadata
+        });
+
+        const color = defaultColorNode.renderer.color;
+        assert.strictEqual(Pixi.isDefaultColor(color.r, color.g, color.b, color.a), true);
+
+        const container = root.children[0];
+        assert.strictEqual(!!container.filters, false);
+      });
+      it ('should add filter if the color is not default color', () => {
+        const root = pixi.import({
+          scene: [ colorNode ],
+          metadata: metadata
+        });
+
+        const color = colorNode.renderer.color;
+        assert.strictEqual(Pixi.isDefaultColor(color.r, color.g, color.b, color.a), false);
+
+        const container = root.children[0];
+        assert.strictEqual(container.filters.length, 1);
       });
     });
   });

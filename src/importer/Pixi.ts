@@ -12,6 +12,13 @@ type ContainerMap = Map<string, PIXI.Container>;
 export default class Pixi extends Importer {
 
   /**
+   * Dtect if given colors are default color
+   */
+  private static isDefaultColor(r: number, g: number, b: number, a?: number): boolean {
+    return (r === 255 && g === 255 && b === 255 && (!a || a === 255));
+  }
+
+  /**
    * Callback called when any asset added to pixi loader
    */
   public onAddLoaderAsset: (node: Node, asset: { url: string, name: string }) => void
@@ -121,6 +128,8 @@ export default class Pixi extends Importer {
     const nodeMap = this.createNodeMap(schema);
     // then instantiate all containers from node map
     const containerMap = this.createContainerMap(nodeMap, PIXI.loader.resources);
+    // restore renderer
+    this.restoreRenderer(nodeMap, containerMap);
     // restore transform in the end
     this.restoreTransform(root, schema, nodeMap, containerMap);
   }
@@ -184,7 +193,7 @@ export default class Pixi extends Importer {
       // TODO: base64 image
 
       let texture = null;
-      if (node.sprite.atlasUrl) {
+      if (node.sprite.atlasUrl && node.sprite.frameName) {
         texture = PIXI.Texture.fromFrame(node.sprite.frameName);
       } else if (node.sprite.url) {
         texture = resources[node.sprite.url].texture;
@@ -317,6 +326,44 @@ export default class Pixi extends Importer {
       container.position.set(position.x, position.y);
       container.scale.set(scale.x, scale.y);
       container.rotation = rotation;
+    });
+  }
+
+  private restoreRenderer(
+    nodeMap: NodeMap,
+    containerMap: ContainerMap
+  ): void {
+    containerMap.forEach((container, id) => {
+      // node that is not from schema
+      const node = nodeMap.get(id);
+      if (!node) {
+        return;
+      }
+
+      if (!node.renderer) {
+        return;
+      }
+
+      if (node.renderer.color) {
+        const color = node.renderer.color;
+        if (!Pixi.isDefaultColor(color.r, color.g, color.b)) {
+          // TODO: consider Sprite tint
+          const filter = new PIXI.filters.ColorMatrixFilter();
+          filter.matrix = [
+            color.r / 255, 0, 0, 0, 0,
+            0, color.g / 255, 0, 0, 0,
+            0, 0, color.b / 255, 0, 0,
+            0, 0, 0, color.a / 255, 0
+          ];
+
+          // getter for filters returns copy
+          const filters = container.filters || [];
+          filters.push(filter);
+          container.filters = filters;
+        } else if (color.a !== 255) {
+          container.alpha = color.a / 255;
+        }
+      }
     });
   }
 }
