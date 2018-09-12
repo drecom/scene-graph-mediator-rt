@@ -6,6 +6,10 @@ import Importer from 'importer/Importer';
  */
 export default class Pixi extends Importer {
     /**
+     * Dtect if given colors are default color
+     */
+    private static isDefaultColor;
+    /**
      * Callback called when any asset added to pixi loader
      */
     onAddLoaderAsset: (node: Node, asset: {
@@ -70,4 +74,5 @@ export default class Pixi extends Importer {
      * since bounds can not be calculated properly if no texture are applied.
      */
     private restoreTransform;
+    private restoreRenderer;
 }
