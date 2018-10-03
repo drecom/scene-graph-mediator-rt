@@ -123,7 +123,7 @@ for (let i = 0; i < frameKeys.length; i++) {
     const w = match[1];
     const h = match[2];
 
-    match = /{([0-9]+),([0-9]+)}/.exec(frame.spriteSourceSize);
+    match = /{([\-0-9]+),([\-0-9]+)}/.exec(frame.spriteSourceSize);
     if (!match) {
       continue;
     }
@@ -134,7 +134,7 @@ for (let i = 0; i < frameKeys.length; i++) {
     let srcX = 0;
     let srcY = 0;
 
-    match = /{([0-9]+),([0-9]+)}/.exec(frame.spriteOffset);
+    match = /{([\-0-9]+),([\-0-9]+)}/.exec(frame.spriteOffset);
     if (match) {
       srcX = match[1];
       srcY = match[2];
@@ -143,7 +143,7 @@ for (let i = 0; i < frameKeys.length; i++) {
     let x = 0;
     let y = 0;
 
-    match = /{{([0-9]+),([0-9]+)},{([0-9]+),([0-9]+)}}/.exec(frame.textureRect);
+    match = /{{([\-0-9]+),([\-0-9]+)},{([\-0-9]+),([\-0-9]+)}}/.exec(frame.textureRect);
     if (match) {
       x = match[1];
       y = match[2];

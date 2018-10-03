@@ -107,6 +107,19 @@ describe('Pixi', () => {
         text: 'text text'
       }
     };
+    const anchorNode = {
+      constructorName: 'Container',
+      id:   parentTestName,
+      name: parentTestName,
+      transform: {
+        x: 10,
+        y: 10,
+        anchor: {
+          x: 0.5,
+          y: 0.5
+        }
+      }
+    };
     const defaultColorNode = {
       constructorName: 'Container',
       id:   'default color',
@@ -171,6 +184,26 @@ describe('Pixi', () => {
 
       assert.strictEqual(root.children.length, 0);
       assert.strictEqual(root.constructor.name, 'Container');
+    });
+
+    it ('should add "sgmed" property to Containers in scene', () => {
+      const root = pixi.import({
+        scene: [ parentNode, childNode ],
+        metadata: metadata
+      });
+
+      for (let i = 0; i < root.children.length; i++) {
+        assert.ok(root.children[i].sgmed);
+      }
+    });
+
+    it ('should not add "sgmed" property to root Containers', () => {
+      const root = pixi.import({
+        scene: [ parentNode, childNode ],
+        metadata: metadata
+      });
+
+      assert.strictEqual(root.sgmed, undefined);
     });
 
     describe('when schema does not contain resource info', () => {
@@ -255,6 +288,58 @@ describe('Pixi', () => {
             assert.strictEqual(root.children[0].text, textNode.text.text);
             clearCache();
             done();
+          });
+        });
+      });
+    });
+
+    describe('ImportOption', () => {
+      describe('if option is not given', () => {
+        describe('when transform.anchor is not (0, 0)', () => {
+          it ('should adjust position by default', () => {
+            const root = pixi.import({
+              scene: [ anchorNode ],
+              metadata: metadata
+            });
+
+            const container = root.children[0];
+            assert.ok(container.position.x !== anchorNode.transform.x);
+            assert.ok(container.position.y !== anchorNode.transform.y);
+          });
+        });
+      });
+
+      describe('if option is given', () => {
+        describe('when transform.anchor is not (0, 0)', () => {
+          describe('and option.autoCoordinateFix is false', () => {
+            it ('should not adjust position', () => {
+              const root = pixi.import(
+                {
+                  scene: [ anchorNode ],
+                  metadata: metadata
+                },
+                { autoCoordinateFix: false }
+              );
+
+              const container = root.children[0];
+              assert.ok(container.position.x === anchorNode.transform.x);
+              assert.ok(container.position.y === anchorNode.transform.y);
+            });
+          });
+          describe('and option.autoCoordinateFix is true', () => {
+            it ('should adjust position', () => {
+              const root = pixi.import(
+                {
+                  scene: [ anchorNode ],
+                  metadata: metadata
+                },
+                { autoCoordinateFix: true }
+              );
+
+              const container = root.children[0];
+              assert.ok(container.position.x !== anchorNode.transform.x);
+              assert.ok(container.position.y !== anchorNode.transform.y);
+            });
           });
         });
       });

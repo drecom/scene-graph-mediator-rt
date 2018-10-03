@@ -28,7 +28,19 @@
           }
         };
 
-        importer.import(PIXI.loader.resources.scenegraph.data, function (root) { app.stage.addChild(root); });
+        // This callback implementetion is an example for fixing difference of coordinate system manually.
+        // It will be done automatically unless explicit disenabling of autoCoordinateFix option.
+        /*
+        importer.onTransformRestored = function (schema, id, container, node) {
+          importer.fixCoordinate(schema, container, node);
+        };
+        */
+
+        importer.import(
+          PIXI.loader.resources.scenegraph.data,
+          function (root) { app.stage.addChild(root); },
+          { autoCoordinateFix: true }
+        );
       });
     };
   </script>

@@ -1,4 +1,4 @@
-import Importer from 'importer/Importer';
+import { Importer, ImportOption } from 'importer/Importer';
 import Pixi from 'importer/Pixi';
 
 const Importers = {
@@ -6,4 +6,4 @@ const Importers = {
   Abstract: Importer
 };
 
-export { Importers };
+export { Importers, ImportOption };

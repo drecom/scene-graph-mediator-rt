@@ -1,10 +1,25 @@
 import { SchemaJson, Node } from '@drecom/scene-graph-schema';
-import Importer from 'importer/Importer';
+import { Importer, ImportOption } from 'importer/Importer';
 
 const DEGREE_TO_RADIAN = Math.PI / 180;
 
 type NodeMap      = Map<string, Node>;
 type ContainerMap = Map<string, PIXI.Container>;
+
+const defaultImportOption: ImportOption = {
+  autoCoordinateFix: true
+};
+
+declare module 'pixi.js' {
+  interface Container {
+    sgmed?: {
+      anchor?: {
+        x: number,
+        y: number
+      }
+    };
+  }
+}
 
 /**
  * Pixi implementation of Importer
@@ -37,6 +52,16 @@ export default class Pixi extends Importer {
   public onPixiObjectCreated: (id: string, obj: any) => void = (_i, _o) => {};
 
   /**
+   * Callback called when transform of each pixi object is restored
+   */
+  public onTransformRestored: (
+    schema: SchemaJson,
+    id: string,
+    obj: any,
+    node: Node
+  ) => void = (_s, _i, _o, _n) => {}
+
+  /**
    * Returns atlas resource name with node id
    */
   public getAtlasResourceNameByNodeId(id: string): string { return `${id}_atlas`; }
@@ -60,7 +85,32 @@ export default class Pixi extends Importer {
    * Resources are automatically downloaded.<br />
    * Use createAssetMap if any customized workflow are preffered.
    */
-  public import(schema: SchemaJson, callback: (root: any) => void = (_) => {}): any {
+  public import(
+    schema: SchemaJson,
+    param1?: (root: any) => void | ImportOption,
+    param2?: ImportOption
+  ): any {
+    let callback: (root: any) => void;
+    let option: ImportOption;
+
+    if (param2) {
+      callback = param1 as any;
+      option   = param2;
+    } else {
+      if (param1) {
+        if (param1.constructor.name === 'Function') {
+          callback = param1;
+          option   = defaultImportOption;
+        } else {
+          callback = (_) => {};
+          option   = param1 as any;
+        }
+      } else {
+        callback = (_) => {};
+        option   = defaultImportOption;
+      }
+    }
+
     const root = new PIXI.Container();
 
     // create asset list to download
@@ -71,11 +121,11 @@ export default class Pixi extends Importer {
       assets.forEach((asset) => { PIXI.loader.add(asset); });
 
       PIXI.loader.load(() => {
-        this.restoreScene(root, schema);
+        this.restoreScene(root, schema, option);
         callback(root);
       });
     } else {
-      this.restoreScene(root, schema);
+      this.restoreScene(root, schema, option);
       callback(root);
     }
 
@@ -123,7 +173,11 @@ export default class Pixi extends Importer {
   /**
    * Rstore pixi container to given root container from schema
    */
-  public restoreScene(root: PIXI.Container, schema: SchemaJson): void {
+  public restoreScene(
+    root: PIXI.Container,
+    schema: SchemaJson,
+    option: ImportOption = defaultImportOption
+  ): void {
     // map all nodes in schema first
     const nodeMap = this.createNodeMap(schema);
     // then instantiate all containers from node map
@@ -131,7 +185,7 @@ export default class Pixi extends Importer {
     // restore renderer
     this.restoreRenderer(nodeMap, containerMap);
     // restore transform in the end
-    this.restoreTransform(root, schema, nodeMap, containerMap);
+    this.restoreTransform(root, schema, nodeMap, containerMap, option);
   }
 
   /**
@@ -247,12 +301,13 @@ export default class Pixi extends Importer {
     root: PIXI.Container,
     schema: SchemaJson,
     nodeMap: NodeMap,
-    containerMap: ContainerMap
+    containerMap: ContainerMap,
+    option: ImportOption = defaultImportOption
   ): void {
     const metadata = schema.metadata;
 
     // original coordinate system adjustment
-    const coordAdjust = {
+    const coordVector = {
       x: (metadata.positiveCoord.xRight ? 1 : -1),
       y: (metadata.positiveCoord.yDown  ? 1 : -1)
     };
@@ -292,41 +347,60 @@ export default class Pixi extends Importer {
         parentContainer.addChild(container);
       }
 
+      // calculate corrdinate
+      const position = {
+        x: transform.x * coordVector.x,
+        y: transform.y * coordVector.y
+      };
+
       // default scale is 1/1
       const scale = (transform.scale) ? {
         x: transform.scale.x,
         y: transform.scale.y
       } : { x: 1, y: 1 };
 
-      // transform size has higher priority than container size
-      const containerSize = {
-        width:  (transform.width  === undefined) ? container.width  : transform.width,
-        height: (transform.height === undefined) ? container.height : transform.height
-      };
-
-      // calculate corrdinate
-      const position = {
-        x: transform.x * coordAdjust.x,
-        y: transform.y * coordAdjust.y
-      };
-      position.x += (parentSize.width  - containerSize.width  * scale.x) * transform.anchor.x;
-      position.y += (parentSize.height - containerSize.height * scale.y) * transform.anchor.y;
-
       // pixi rotation is presented in radian
       const rotation = (transform.rotation) ? transform.rotation * DEGREE_TO_RADIAN : 0;
 
-      // consider anchor
-      if ((container as PIXI.Sprite).anchor) {
-        (container as PIXI.Sprite).anchor.set(transform.anchor.x, transform.anchor.y);
-        position.x += containerSize.width  * scale.x * transform.anchor.x;
-        position.y += containerSize.height * scale.y * transform.anchor.y;
+      // scene-graph-mediator extended properties
+      if (!container.sgmed) {
+        container.sgmed = {};
       }
+
+      container.sgmed.anchor = {
+        x: transform.anchor.x,
+        y: transform.anchor.y
+      };
 
       // assign every thing
       container.position.set(position.x, position.y);
       container.scale.set(scale.x, scale.y);
       container.rotation = rotation;
+
+      if (option.autoCoordinateFix) {
+        this.fixCoordinate(schema, container, node);
+      }
+
+      this.onTransformRestored(schema, id, container, node);
     });
+  }
+
+  public fixCoordinate(schema: SchemaJson, obj: any, node: Node): void {
+    const transform = node.transform;
+    const scale     = transform.scale || { x: 1, y: 1 };
+
+    if (transform.parent === undefined) {
+      obj.position.x += schema.metadata.width  * transform.anchor.x;
+      obj.position.y += schema.metadata.height * transform.anchor.y;
+    } else {
+      if (obj.anchor) {
+        obj.anchor.x = transform.anchor.x;
+        obj.anchor.y = 0.5 - (transform.anchor.y - 0.5);
+      } else {
+        obj.position.x -= (transform.width  || obj.width  || 0) * scale.x * transform.anchor.x;
+        obj.position.y -= (transform.height || obj.height || 0) * scale.y * transform.anchor.y;
+      }
+    }
   }
 
   private restoreRenderer(
