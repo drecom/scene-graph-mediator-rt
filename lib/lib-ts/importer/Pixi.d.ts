@@ -1,6 +1,16 @@
 /// <reference types="pixi.js" />
 import { SchemaJson, Node } from '@drecom/scene-graph-schema';
-import Importer from 'importer/Importer';
+import { Importer, ImportOption } from 'importer/Importer';
+declare module 'pixi.js' {
+    interface Container {
+        sgmed?: {
+            anchor?: {
+                x: number;
+                y: number;
+            };
+        };
+    }
+}
 /**
  * Pixi implementation of Importer
  */
@@ -26,6 +36,10 @@ export default class Pixi extends Importer {
      */
     onPixiObjectCreated: (id: string, obj: any) => void;
     /**
+     * Callback called when transform of each pixi object is restored
+     */
+    onTransformRestored: (schema: SchemaJson, id: string, obj: any, node: Node) => void;
+    /**
      * Returns atlas resource name with node id
      */
     getAtlasResourceNameByNodeId(id: string): string;
@@ -42,7 +56,7 @@ export default class Pixi extends Importer {
      * Resources are automatically downloaded.<br />
      * Use createAssetMap if any customized workflow are preffered.
      */
-    import(schema: SchemaJson, callback?: (root: any) => void): any;
+    import(schema: SchemaJson, param1?: (root: any) => void | ImportOption, param2?: ImportOption): any;
     /**
      * Create asset map from schema.<br />
      * Users can use this method and restoreScene individually to inject custom pipeline.
@@ -54,7 +68,7 @@ export default class Pixi extends Importer {
     /**
      * Rstore pixi container to given root container from schema
      */
-    restoreScene(root: PIXI.Container, schema: SchemaJson): void;
+    restoreScene(root: PIXI.Container, schema: SchemaJson, option?: ImportOption): void;
     /**
      * Map all nodes from given schema
      */
@@ -74,5 +88,6 @@ export default class Pixi extends Importer {
      * since bounds can not be calculated properly if no texture are applied.
      */
     private restoreTransform;
+    fixCoordinate(schema: SchemaJson, obj: any, node: Node): void;
     private restoreRenderer;
 }

@@ -25,7 +25,8 @@
           "17",
           "20",
           "25",
-          "28"
+          "28",
+          "33"
         ]
       },
       "renderer": {
@@ -107,8 +108,8 @@
       "name": "SpriteSheet_arupaka",
       "constructorName": "cc.Node",
       "transform": {
-        "width": 136,
-        "height": 186,
+        "width": 192,
+        "height": 192,
         "x": 0,
         "y": -99,
         "rotation": 0,
@@ -142,8 +143,8 @@
       "name": "SpriteSheet_buta",
       "constructorName": "cc.Node",
       "transform": {
-        "width": 148,
-        "height": 176,
+        "width": 192,
+        "height": 192,
         "x": 107,
         "y": -146,
         "rotation": 45,
@@ -177,8 +178,8 @@
       "name": "SpriteSheet_hamster",
       "constructorName": "cc.Node",
       "transform": {
-        "width": 172,
-        "height": 178,
+        "width": 192,
+        "height": 192,
         "x": 162,
         "y": -18,
         "rotation": 180,
@@ -212,8 +213,8 @@
       "name": "SpriteSheet_hiyoko",
       "constructorName": "cc.Node",
       "transform": {
-        "width": 182,
-        "height": 184,
+        "width": 192,
+        "height": 192,
         "x": 59,
         "y": 123,
         "rotation": -45,
@@ -279,18 +280,18 @@
       "name": "Sprite",
       "constructorName": "cc.Node",
       "transform": {
-        "width": 128,
-        "height": 188,
-        "x": -13,
-        "y": 235,
+        "width": 192,
+        "height": 192,
+        "x": -87,
+        "y": 182,
         "rotation": 0,
         "scale": {
           "x": 1,
           "y": 1
         },
         "anchor": {
-          "x": 0.5,
-          "y": 0.5
+          "x": 0,
+          "y": 0
         },
         "parent": "14",
         "children": []
@@ -600,8 +601,8 @@
       "name": "TintSpriteSheet2",
       "constructorName": "cc.Node",
       "transform": {
-        "width": 130,
-        "height": 190,
+        "width": 192,
+        "height": 192,
         "x": 35,
         "y": 276,
         "rotation": 0,
@@ -635,8 +636,8 @@
       "name": "TintSpriteSheet1",
       "constructorName": "cc.Node",
       "transform": {
-        "width": 130,
-        "height": 190,
+        "width": 192,
+        "height": 192,
         "x": 91,
         "y": 313,
         "rotation": 0,
@@ -663,6 +664,107 @@
         "frameName": "animal_usagi.png",
         "url": "/assets/Texture/sample_sprite_sheet_with_9slice.png",
         "atlasUrl": "/assets/Texture/sample_sprite_sheet_with_9slice.plist"
+      }
+    },
+    {
+      "id": "33",
+      "name": "AnchorNode",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 0,
+        "height": 0,
+        "x": -320,
+        "y": -568,
+        "rotation": 0,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "parent": "2",
+        "children": [
+          "34",
+          "36"
+        ]
+      },
+      "renderer": {
+        "color": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 255
+        }
+      }
+    },
+    {
+      "id": "34",
+      "name": "AnchorOneNode",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 192,
+        "height": 192,
+        "x": 640,
+        "y": 192,
+        "rotation": 0,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 1,
+          "y": 1
+        },
+        "parent": "33",
+        "children": []
+      },
+      "renderer": {
+        "color": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 255
+        }
+      },
+      "sprite": {
+        "url": "/assets/Texture/animal_usagi.png",
+        "frameName": "animal_usagi"
+      }
+    },
+    {
+      "id": "36",
+      "name": "AnchorZeroNode",
+      "constructorName": "cc.Node",
+      "transform": {
+        "width": 192,
+        "height": 192,
+        "x": 0,
+        "y": 0,
+        "rotation": 0,
+        "scale": {
+          "x": 1,
+          "y": 1
+        },
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "parent": "33",
+        "children": []
+      },
+      "renderer": {
+        "color": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 255
+        }
+      },
+      "sprite": {
+        "url": "/assets/Texture/animal_usagi.png",
+        "frameName": "animal_usagi"
       }
     }
   ],
