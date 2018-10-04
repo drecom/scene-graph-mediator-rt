@@ -367,16 +367,16 @@ export default class Pixi extends Importer {
       container.position.set(position.x, position.y);
       container.scale.set(scale.x, scale.y);
       container.rotation = rotation;
+
+      if (option.autoCoordinateFix) {
+        this.fixCoordinate(schema, container, node);
+      }
     });
 
     containerMap.forEach((container, id) => {
       const node = nodeMap.get(id);
       if (!node) {
         return;
-      }
-
-      if (option.autoCoordinateFix) {
-        this.fixCoordinate(schema, container, node);
       }
 
       this.onTransformRestored(schema, id, container, node);
