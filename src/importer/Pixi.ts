@@ -321,16 +321,11 @@ export default class Pixi extends Importer {
         return;
       }
 
-      // default parent size is the scene size, this will be modified later
-      const parentSize = {
-        width:  metadata.width,
-        height: metadata.height
-      };
-
       const transform = node.transform;
 
-      // container that has no parent is the root element
+      // restore hieralchy
       if (transform.parent === undefined) {
+        // container that has no parent is the root element
         root.addChild(container);
       } else {
         const parentContainer = containerMap.get(transform.parent);
@@ -340,14 +335,10 @@ export default class Pixi extends Importer {
           return;
         }
 
-        // change parentSize with actual parent size
-        parentSize.width  = parentNode.transform.width  || 0;
-        parentSize.height = parentNode.transform.height || 0;
-
         parentContainer.addChild(container);
       }
 
-      // calculate corrdinate
+      // convert coordinate system
       const position = {
         x: transform.x * coordVector.x,
         y: transform.y * coordVector.y
@@ -372,10 +363,17 @@ export default class Pixi extends Importer {
         y: transform.anchor.y
       };
 
-      // assign every thing
+      // assign everything
       container.position.set(position.x, position.y);
       container.scale.set(scale.x, scale.y);
       container.rotation = rotation;
+    });
+
+    containerMap.forEach((container, id) => {
+      const node = nodeMap.get(id);
+      if (!node) {
+        return;
+      }
 
       if (option.autoCoordinateFix) {
         this.fixCoordinate(schema, container, node);
@@ -397,8 +395,8 @@ export default class Pixi extends Importer {
         obj.anchor.x = transform.anchor.x;
         obj.anchor.y = 0.5 - (transform.anchor.y - 0.5);
       } else {
-        obj.position.x -= (transform.width  || obj.width  || 0) * scale.x * transform.anchor.x;
-        obj.position.y -= (transform.height || obj.height || 0) * scale.y * transform.anchor.y;
+        obj.position.x -= (transform.width  || 0) * scale.x * transform.anchor.x;
+        obj.position.y -= (transform.height || 0) * scale.y * transform.anchor.y;
       }
     }
   }
