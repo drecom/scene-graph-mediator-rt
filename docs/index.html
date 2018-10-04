@@ -70,6 +70,19 @@
 				<p>For most simple example;</p>
 				<pre><code>const importer = <span class="hljs-keyword">new</span> SceneGraph.Importers.Pixi();
 importer.<span class="hljs-keyword">import</span>(scenegraphJson, <span class="hljs-function"><span class="hljs-params">(root)</span> =&gt;</span> stage.addChild(root));
+</code></pre><p>Building custom import pipeline;</p>
+				<pre><code>const importer = <span class="hljs-keyword">new</span> SceneGraph.Importers.Pixi();
+
+<span class="hljs-regexp">//</span> create asset list to download
+const assets = importer.createAssetMap(scenegraphJson);
+
+<span class="hljs-regexp">//</span> load <span class="hljs-keyword">if</span> any asset <span class="hljs-keyword">is</span> required
+<span class="hljs-keyword">if</span> (assets.size &gt; <span class="hljs-number">0</span>) {
+  assets.forEach(<span class="hljs-function"><span class="hljs-params">(asset)</span> =&gt;</span> PIXI.loader.add(asset));
+  PIXI.loader.load(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> importer.restoreScene(app.stage, schema));
+} <span class="hljs-keyword">else</span> {
+  importer.restoreScene(app.stage, schema);
+}
 </code></pre><p>See example directory for working example.</p>
 				<h1 id="remarks">Remarks</h1>
 				<p>To shrink runtime code volume, importer/exporter for each runtime may separated from this repository in the future.</p>

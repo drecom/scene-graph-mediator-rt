@@ -114,10 +114,57 @@ describe('Pixi', () => {
       transform: {
         x: 10,
         y: 10,
+        width: 10,
+        height: 10,
         anchor: {
           x: 0.5,
           y: 0.5
-        }
+        },
+        children: [childTestName]
+      }
+    };
+    const anchorChildNode = {
+      constructorName: 'Container',
+      id:   childTestName,
+      name: childTestName,
+      transform: {
+        x: 10,
+        y: 10,
+        width: 100,
+        height: 100,
+        anchor: {
+          x: 0.5,
+          y: 0.5
+        },
+        parent: parentTestName
+      }
+    };
+    const anchorNoSizeNode = {
+      constructorName: 'Container',
+      id:   parentTestName,
+      name: parentTestName,
+      transform: {
+        x: 10,
+        y: 10,
+        anchor: {
+          x: 0.5,
+          y: 0.5
+        },
+        children: [childTestName]
+      }
+    };
+    const anchorNoSizeChildNode = {
+      constructorName: 'Container',
+      id:   childTestName,
+      name: childTestName,
+      transform: {
+        x: 10,
+        y: 10,
+        anchor: {
+          x: 0.5,
+          y: 0.5
+        },
+        parent: parentTestName
       }
     };
     const defaultColorNode = {
@@ -296,15 +343,49 @@ describe('Pixi', () => {
     describe('ImportOption', () => {
       describe('if option is not given', () => {
         describe('when transform.anchor is not (0, 0)', () => {
-          it ('should adjust position by default', () => {
-            const root = pixi.import({
-              scene: [ anchorNode ],
-              metadata: metadata
-            });
+          describe('when transform.width/height is not set', () => {
+            it ('should not adjust position of root elements by default', () => {
+              const root = pixi.import({
+                scene: [ anchorNoSizeNode, anchorNoSizeChildNode ],
+                metadata: metadata
+              });
 
-            const container = root.children[0];
-            assert.ok(container.position.x !== anchorNode.transform.x);
-            assert.ok(container.position.y !== anchorNode.transform.y);
+              const container = root.children[0];
+              assert.ok(container.position.x === anchorNode.transform.x);
+              assert.ok(container.position.y === anchorNode.transform.y);
+            });
+            it ('should not adjust position of elements under root elements by default', () => {
+              const root = pixi.import({
+                scene: [ anchorNoSizeNode, anchorNoSizeChildNode ],
+                metadata: metadata
+              });
+
+              const container = root.children[0].children[0];
+              assert.ok(container.position.x === anchorChildNode.transform.x);
+              assert.ok(container.position.y === anchorChildNode.transform.y);
+            });
+          });
+          describe('when transform.width/height is set and significantly different from parent\'s size', () => {
+            it ('should not adjust position of root elements by default', () => {
+              const root = pixi.import({
+                scene: [ anchorNode, anchorChildNode ],
+                metadata: metadata
+              });
+
+              const container = root.children[0];
+              assert.ok(container.position.x === anchorNode.transform.x);
+              assert.ok(container.position.y === anchorNode.transform.y);
+            });
+            it ('should adjust position of elements under root elements by default', () => {
+              const root = pixi.import({
+                scene: [ anchorNode, anchorChildNode ],
+                metadata: metadata
+              });
+
+              const container = root.children[0].children[0];
+              assert.ok(container.position.x !== anchorChildNode.transform.x);
+              assert.ok(container.position.y !== anchorChildNode.transform.y);
+            });
           });
         });
       });
@@ -327,18 +408,18 @@ describe('Pixi', () => {
             });
           });
           describe('and option.autoCoordinateFix is true', () => {
-            it ('should adjust position', () => {
+            it ('should adjust position of elements under root elements', () => {
               const root = pixi.import(
                 {
-                  scene: [ anchorNode ],
+                  scene: [ anchorNode, anchorChildNode ],
                   metadata: metadata
                 },
                 { autoCoordinateFix: true }
               );
 
-              const container = root.children[0];
-              assert.ok(container.position.x !== anchorNode.transform.x);
-              assert.ok(container.position.y !== anchorNode.transform.y);
+              const container = root.children[0].children[0];
+              assert.ok(container.position.x !== anchorChildNode.transform.x);
+              assert.ok(container.position.y !== anchorChildNode.transform.y);
             });
           });
         });

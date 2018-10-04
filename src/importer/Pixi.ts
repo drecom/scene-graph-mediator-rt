@@ -58,8 +58,9 @@ export default class Pixi extends Importer {
     schema: SchemaJson,
     id: string,
     obj: any,
-    node: Node
-  ) => void = (_s, _i, _o, _n) => {}
+    node: Node,
+    parentNode?: Node
+  ) => void = (_s, _i, _o, _n, _p) => {}
 
   /**
    * Returns atlas resource name with node id
@@ -321,7 +322,8 @@ export default class Pixi extends Importer {
         return;
       }
 
-      const transform = node.transform;
+      const transform  = node.transform;
+      const parentNode = transform.parent ? nodeMap.get(transform.parent) : undefined;
 
       // restore hieralchy
       if (transform.parent === undefined) {
@@ -329,7 +331,6 @@ export default class Pixi extends Importer {
         root.addChild(container);
       } else {
         const parentContainer = containerMap.get(transform.parent);
-        const parentNode      = nodeMap.get(transform.parent);
         // skip if any parent could not be detected
         if (!parentContainer || !parentNode) {
           return;
@@ -369,7 +370,7 @@ export default class Pixi extends Importer {
       container.rotation = rotation;
 
       if (option.autoCoordinateFix) {
-        this.fixCoordinate(schema, container, node);
+        this.fixCoordinate(schema, container, node, parentNode);
       }
     });
 
@@ -379,25 +380,38 @@ export default class Pixi extends Importer {
         return;
       }
 
-      this.onTransformRestored(schema, id, container, node);
+      const parentNode = node.transform.parent ? nodeMap.get(node.transform.parent) : undefined;
+
+      this.onTransformRestored(schema, id, container, node, parentNode);
     });
   }
 
-  public fixCoordinate(schema: SchemaJson, obj: any, node: Node): void {
+  public fixCoordinate(_schema: SchemaJson, obj: any, node: Node, parentNode?: Node): void {
     const transform = node.transform;
     const scale     = transform.scale || { x: 1, y: 1 };
 
-    if (transform.parent === undefined) {
-      obj.position.x += schema.metadata.width  * transform.anchor.x;
-      obj.position.y += schema.metadata.height * transform.anchor.y;
-    } else {
-      if (obj.anchor) {
-        obj.anchor.x = transform.anchor.x;
-        obj.anchor.y = 0.5 - (transform.anchor.y - 0.5);
-      } else {
-        obj.position.x -= (transform.width  || 0) * scale.x * transform.anchor.x;
-        obj.position.y -= (transform.height || 0) * scale.y * transform.anchor.y;
-      }
+    if (parentNode === undefined) {
+      return;
+    }
+
+    const size = {
+      width:  transform.width || 0,
+      height: transform.height || 0
+    };
+
+    const parentSize = {
+      width:  parentNode.transform.width || 0,
+      height: parentNode.transform.height || 0
+    };
+
+    obj.position.x += (parentSize.width  - size.width  * scale.x) * transform.anchor.x;
+    obj.position.y += (parentSize.height - size.height * scale.y) * transform.anchor.y;
+
+    if (obj.anchor) {
+      obj.position.x += size.width  * scale.x * transform.anchor.x;
+      obj.position.y += size.height * scale.y * transform.anchor.y;
+      obj.anchor.x = transform.anchor.x;
+      obj.anchor.y = 0.5 - (transform.anchor.y - 0.5);
     }
   }
 
