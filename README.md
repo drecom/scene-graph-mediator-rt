@@ -14,6 +14,23 @@ const importer = new SceneGraph.Importers.Pixi();
 importer.import(scenegraphJson, (root) => stage.addChild(root));
 ```
 
+Building custom import pipeline;
+
+```
+const importer = new SceneGraph.Importers.Pixi();
+
+// create asset list to download
+const assets = importer.createAssetMap(scenegraphJson);
+
+// load if any asset is required
+if (assets.size > 0) {
+  assets.forEach((asset) => PIXI.loader.add(asset));
+  PIXI.loader.load(() => importer.restoreScene(app.stage, schema));
+} else {
+  importer.restoreScene(app.stage, schema);
+}
+```
+
 See example directory for working example.
 
 # Remarks

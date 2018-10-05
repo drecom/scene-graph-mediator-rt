@@ -38,7 +38,7 @@ export default class Pixi extends Importer {
     /**
      * Callback called when transform of each pixi object is restored
      */
-    onTransformRestored: (schema: SchemaJson, id: string, obj: any, node: Node) => void;
+    onTransformRestored: (schema: SchemaJson, id: string, obj: any, node: Node, parentNode?: Node) => void;
     /**
      * Returns atlas resource name with node id
      */
@@ -88,6 +88,6 @@ export default class Pixi extends Importer {
      * since bounds can not be calculated properly if no texture are applied.
      */
     private restoreTransform;
-    fixCoordinate(schema: SchemaJson, obj: any, node: Node): void;
+    fixCoordinate(_schema: SchemaJson, obj: any, node: Node, parentNode?: Node): void;
     private restoreRenderer;
 }
