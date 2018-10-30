@@ -1,5 +1,6 @@
 import { SchemaJson, Node } from '@drecom/scene-graph-schema';
 import { Importer, ImportOption } from 'importer/Importer';
+import ImporterPlugin from '../interface/ImporterPlugin';
 
 const DEGREE_TO_RADIAN = Math.PI / 180;
 
@@ -36,31 +37,58 @@ export default class Pixi extends Importer {
   /**
    * Callback called when any asset added to pixi loader
    */
-  public onAddLoaderAsset: (node: Node, asset: { url: string, name: string }) => void
-    = (_node: Node, _asset: { url: string, name: string }) => {}
+  public setOnAddLoaderAsset(
+    callback: (node: Node, asset: { url: string, name: string }) => void = (_n, _a) => {}
+  ): void {
+    this.onAddLoaderAsset = callback;
+  }
 
   /**
    * Callback called when restoring a node to pixi container<br />
    * If null is returned, default initiator creates pixi object.
    */
-  public onRestoreNode: (node: Node, resources: any) => any | null | undefined
-    = (_n, _r) => { return null; }
+  public setOnRestoreNode(
+    callback: (node: Node, resources: any) => any | null | undefined = (_n, _r) => { return null; }
+  ): void {
+    this.onRestoreNode = callback;
+  }
 
   /**
    * Callback called when each pixi object is instantiated
    */
-  public onPixiObjectCreated: (id: string, obj: any) => void = (_i, _o) => {};
+  public setOnRuntimeObjectCreated(
+    callback: (id: string, obj: any) => void = (_i, _o) => {}
+  ): void {
+    this.onPixiObjectCreated = callback;
+  }
 
-  /**
-   * Callback called when transform of each pixi object is restored
-   */
-  public onTransformRestored: (
+  public setOnTransformRestored(
+    callback: (
+      schema: SchemaJson,
+      id: string,
+      obj: any,
+      node: Node,
+      parentNode?: Node
+    ) => void = (_s, _i, _o, _n, _p) => {}
+  ): void {
+    this.onTransformRestored = callback;
+  }
+
+  private onAddLoaderAsset: (node: Node, asset: { url: string, name: string }) => void
+    = (_node: Node, _asset: { url: string, name: string }) => {}
+  private onRestoreNode: (node: Node, resources: any) => any | null | undefined
+    = (_n, _r) => { return null; }
+  private onPixiObjectCreated: (id: string, obj: any) => void
+    = (_i, _o) => {};
+  private onTransformRestored: (
     schema: SchemaJson,
     id: string,
     obj: any,
     node: Node,
     parentNode?: Node
   ) => void = (_s, _i, _o, _n, _p) => {}
+
+  private plugins: ImporterPlugin[] = [];
 
   /**
    * Returns atlas resource name with node id
@@ -79,6 +107,13 @@ export default class Pixi extends Importer {
    */
   public hasInitiator(name: string): boolean {
     return PIXI.hasOwnProperty(name);
+  }
+
+  /**
+   * Add plugin to extend import process.
+   */
+  public addPlugin(plugin: ImporterPlugin): void {
+    this.plugins.push(plugin);
   }
 
   /**
@@ -187,6 +222,20 @@ export default class Pixi extends Importer {
     this.restoreRenderer(nodeMap, containerMap);
     // restore transform in the end
     this.restoreTransform(root, schema, nodeMap, containerMap, option);
+  }
+
+  /**
+   * Extend scene graph with user plugins.
+   */
+  public pluginPostProcess(
+    schema: SchemaJson,
+    nodeMap: Map<string, Node>,
+    runtimeObjectMap: Map<string, any>
+  ): void {
+    for (let i = 0; i < this.plugins.length; i++) {
+      const plugin = this.plugins[i];
+      plugin.extendRuntimeObjects(schema, nodeMap, runtimeObjectMap);
+    }
   }
 
   /**
@@ -373,6 +422,8 @@ export default class Pixi extends Importer {
         this.fixCoordinate(schema, container, node, parentNode);
       }
     });
+
+    this.pluginPostProcess(schema, nodeMap, containerMap);
 
     containerMap.forEach((container, id) => {
       const node = nodeMap.get(id);
