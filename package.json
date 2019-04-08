@@ -16,6 +16,7 @@
     "workflow:build": "npm run build:dev && npm run build:prod && npm run build:docs",
     "test:unit": "karma start",
     "test:lint": "tslint -p tsconfig.json --format stylish 'src/**/*.ts*'",
+    "test:fixlint": "tslint -p tsconfig.json --format stylish --fix 'src/**/*.ts*'",
     "workflow:test": "npm run test:unit && npm run test:lint"
   },
   "keywords": [],
