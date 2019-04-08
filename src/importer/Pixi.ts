@@ -1,6 +1,7 @@
 import { SchemaJson, Node } from '@drecom/scene-graph-schema';
 import { Importer, ImportOption } from 'importer/Importer';
 import ImporterPlugin from '../interface/ImporterPlugin';
+import { LayoutComponent } from './component/Layout';
 
 const DEGREE_TO_RADIAN = Math.PI / 180;
 
@@ -17,6 +18,10 @@ declare module 'pixi.js' {
       anchor?: {
         x: number,
         y: number
+      },
+      originalSize?: {
+        width: number,
+        height: number
       }
     };
   }
@@ -412,6 +417,10 @@ export default class Pixi extends Importer {
         x: transform.anchor.x,
         y: transform.anchor.y
       };
+      container.sgmed.originalSize = {
+        width: transform.width || 0,
+        height: transform.height || 0
+      };
 
       // assign everything
       container.position.set(position.x, position.y);
@@ -421,6 +430,16 @@ export default class Pixi extends Importer {
       if (option.autoCoordinateFix) {
         this.fixCoordinate(schema, container, node, parentNode);
       }
+    });
+
+    // update under Layout component node
+    containerMap.forEach((container, id) => {
+      const node = nodeMap.get(id);
+      if (!node || !node.layout) {
+        return;
+      }
+
+      LayoutComponent.fixLayout(container, node);
     });
 
     this.pluginPostProcess(schema, nodeMap, containerMap);
