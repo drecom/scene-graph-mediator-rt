@@ -79,7 +79,7 @@ export default class Pixi extends Importer {
   private onRestoreNode: (node: Node, resources: any) => any | null | undefined
     = (_n, _r) => { return null; }
   private onPixiObjectCreated: (id: string, obj: any) => void
-    = (_i, _o) => {};
+    = (_i, _o) => {}
   private onTransformRestored: (
     schema: SchemaJson,
     id: string,
